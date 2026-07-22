@@ -15,7 +15,7 @@ export function AboutSection() {
           <div className="md:col-span-7 md:pt-8">
             <Reveal>
               <p className="eyebrow mb-8 text-accent">{t.about.eyebrow}</p>
-              <h2 id="about-heading" className="display-lg text-balance">
+              <h2 id="about-heading" className="about-heading display-lg text-balance">
                 {t.about.title}
               </h2>
             </Reveal>

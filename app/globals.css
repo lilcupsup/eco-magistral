@@ -84,6 +84,14 @@ html[lang="hy"] .display-md {
   line-height: 1.08;
 }
 
+html[lang="hy"] .about-heading {
+  max-width: 100%;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  letter-spacing: -0.035em;
+  line-height: 1.04;
+  overflow-wrap: anywhere;
+}
+
 html[lang="hy"] .eyebrow {
   letter-spacing: 0.08em;
   text-transform: none;
