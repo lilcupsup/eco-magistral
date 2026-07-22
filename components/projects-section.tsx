@@ -42,7 +42,7 @@ export function ProjectsSection() {
 
       return () => media.revert();
     },
-    { scope: wrap, dependencies: [reduce] },
+    { scope: wrap, dependencies: [reduce, language], revertOnUpdate: true },
   );
 
   return (

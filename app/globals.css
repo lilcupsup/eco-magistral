@@ -1,4 +1,8 @@
 @import "@fontsource-variable/manrope";
+@import "@fontsource/noto-sans-armenian/armenian-400.css";
+@import "@fontsource/noto-sans-armenian/armenian-500.css";
+@import "@fontsource/noto-sans-armenian/armenian-600.css";
+@import "@fontsource/noto-sans-armenian/armenian-700.css";
 @import "tailwindcss";
 
 @theme inline {
@@ -69,6 +73,26 @@ body {
   font-synthesis: none;
   text-rendering: geometricPrecision;
   transition: background-color 320ms cubic-bezier(0.16, 1, 0.3, 1), color 240ms ease;
+}
+
+html[lang="hy"] body {
+  font-family: "Noto Sans Armenian", "Manrope Variable", "Segoe UI", sans-serif;
+}
+
+html[lang="hy"] .display-md {
+  letter-spacing: -0.028em;
+  line-height: 1.08;
+}
+
+html[lang="hy"] .eyebrow {
+  letter-spacing: 0.08em;
+  text-transform: none;
+}
+
+html[lang="hy"] #projects h3 {
+  overflow-wrap: anywhere;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
 }
 
 section,
