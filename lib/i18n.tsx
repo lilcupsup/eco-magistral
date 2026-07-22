@@ -68,10 +68,9 @@ const translations = {
       alts: ["Contemporary public space finished in Armenian tuff stone", "Landscaped public park with pedestrian infrastructure", "Modern playground integrated into a landscaped park", "Community football field in a mountain landscape", "Landscaped parking and site access", "Road construction equipment working in mountain terrain"],
     },
     contact: {
-      eyebrow: "Start a Project", title: "Let’s build what comes next.", intro: "Tell us about the site, the scope and the outcome you need. We will continue the conversation with the right next step.",
-      successTitle: "Project enquiry received.", successMessage: "Thank you. Your project enquiry has been received.", another: "Send another enquiry",
-      fields: { name: "Name", company: "Company or Organization", email: "Email", phone: "Phone (optional)", type: "Project Type", selectType: "Select a project type", location: "Project Location", message: "Tell us about the project", website: "Website" },
-      privacy: "Your details will only be used to respond to this project enquiry.", sending: "Sending Enquiry", send: "Send Project Enquiry", error: "The enquiry could not be sent. Please try again later." },
+      eyebrow: "Contact", title: "Let’s discuss what comes next.", intro: "Reach our team directly to discuss a site, a project scope or a potential partnership.",
+      labels: { phone: "Phone", whatsapp: "WhatsApp", email: "Email", hours: "Working hours" }, hours: "Mon–Fri, 09:00–18:00", socialTitle: "Follow ECO MAGISTRAL",
+    },
     footer: { statement: "Building modern infrastructure for connected places.", rights: "All rights reserved.", descriptor: "Infrastructure, landscape and public realm", navigation: "Footer navigation" },
   },
   ru: {
@@ -125,8 +124,9 @@ const translations = {
       alts: ["Современное общественное пространство с отделкой из армянского туфа", "Благоустроенный общественный парк с пешеходной инфраструктурой", "Современная детская площадка в ландшафтном парке", "Общественное футбольное поле в горном ландшафте", "Озеленённая парковка и подъездные пути", "Дорожная техника работает в горной местности"],
     },
     contact: {
-      eyebrow: "Начать проект", title: "Создадим то, что будет дальше.", intro: "Расскажите нам о площадке, объёме работ и необходимом результате. Мы предложим подходящий следующий шаг.", successTitle: "Заявка на проект получена.", successMessage: "Спасибо. Мы получили вашу заявку и свяжемся с вами.", another: "Отправить ещё одну заявку",
-      fields: { name: "Имя", company: "Компания или организация", email: "Эл. почта", phone: "Телефон (необязательно)", type: "Тип проекта", selectType: "Выберите тип проекта", location: "Местоположение проекта", message: "Расскажите о проекте", website: "Веб-сайт" }, privacy: "Ваши данные будут использованы только для ответа на эту заявку.", sending: "Отправляем заявку", send: "Отправить заявку", error: "Не удалось отправить заявку. Попробуйте ещё раз позже." },
+      eyebrow: "Контакты", title: "Обсудим ваш следующий проект.", intro: "Свяжитесь с нашей командой напрямую, чтобы обсудить площадку, объём работ или возможное партнёрство.",
+      labels: { phone: "Телефон", whatsapp: "WhatsApp", email: "Электронная почта", hours: "Часы работы" }, hours: "Пн–Пт, 09:00–18:00", socialTitle: "ECO MAGISTRAL в социальных сетях",
+    },
     footer: { statement: "Создаём современную инфраструктуру для связанных территорий.", rights: "Все права защищены.", descriptor: "Инфраструктура, ландшафт и общественные пространства", navigation: "Навигация в подвале сайта" },
   },
   hy: {
@@ -180,8 +180,9 @@ const translations = {
       alts: ["Հայկական տուֆով ավարտված ժամանակակից հանրային տարածք", "Հետիոտնային ենթակառուցվածքով բարեկարգված հանրային այգի", "Լանդշաֆտային այգում ինտեգրված ժամանակակից խաղահրապարակ", "Համայնքային ֆուտբոլի դաշտ լեռնային լանդշաֆտում", "Կանաչապատված ավտոկայանատեղի և մուտքային ուղի", "Ճանապարհաշինական տեխնիկա լեռնային տեղանքում"],
     },
     contact: {
-      eyebrow: "Սկսել նախագիծ", title: "Եկեք կառուցենք հաջորդը։", intro: "Պատմեք տարածքի, աշխատանքների ծավալի և ակնկալվող արդյունքի մասին։ Մենք կառաջարկենք համապատասխան հաջորդ քայլը։", successTitle: "Նախագծի հայտը ստացվել է։", successMessage: "Շնորհակալություն։ Ձեր հայտը ստացվել է, և մենք կկապվենք ձեզ հետ։", another: "Ուղարկել ևս մեկ հայտ",
-      fields: { name: "Անուն", company: "Ընկերություն կամ կազմակերպություն", email: "Էլ. փոստ", phone: "Հեռախոս (ոչ պարտադիր)", type: "Նախագծի տեսակ", selectType: "Ընտրեք նախագծի տեսակը", location: "Նախագծի վայրը", message: "Պատմեք նախագծի մասին", website: "Կայք" }, privacy: "Ձեր տվյալները կօգտագործվեն միայն այս հայտին պատասխանելու համար։", sending: "Հայտն ուղարկվում է", send: "Ուղարկել հայտը", error: "Չհաջողվեց ուղարկել հայտը։ Խնդրում ենք փորձել ավելի ուշ։" },
+      eyebrow: "Կապ", title: "Քննարկենք ձեր հաջորդ նախագիծը։", intro: "Կապվեք մեր թիմի հետ՝ տարածքը, աշխատանքների ծավալը կամ հնարավոր համագործակցությունը քննարկելու համար։",
+      labels: { phone: "Հեռախոս", whatsapp: "WhatsApp", email: "Էլեկտրոնային փոստ", hours: "Աշխատանքային ժամեր" }, hours: "Երկ–Ուրբ, 09:00–18:00", socialTitle: "ECO MAGISTRAL-ը սոցիալական ցանցերում",
+    },
     footer: { statement: "Կառուցում ենք ժամանակակից ենթակառուցվածքներ փոխկապակցված տարածքների համար։", rights: "Բոլոր իրավունքները պաշտպանված են։", descriptor: "Ենթակառուցվածք, լանդշաֆտ և հանրային տարածքներ", navigation: "Էջատակի նավարկում" },
   },
 } as const;

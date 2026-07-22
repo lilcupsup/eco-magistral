@@ -22,9 +22,6 @@ npm run build
 Copy `.env.example` to `.env.local` and configure:
 
 - `NEXT_PUBLIC_SITE_URL`: canonical production origin for SEO metadata.
-- `CONTACT_WEBHOOK_URL`: HTTPS endpoint that receives validated enquiry JSON.
-
-The contact form deliberately returns a visible unavailable state when no webhook is configured. It never reports success while discarding an enquiry.
 
 ## Media
 
@@ -39,4 +36,4 @@ The contact form deliberately returns a visible unavailable state when no webhoo
 - Swiper: touch-friendly gallery.
 - Lucide: consistent outline icon family.
 
-All motion respects `prefers-reduced-motion`. The desktop navigation, mobile menu, form controls and gallery lightbox are keyboard accessible.
+All motion respects `prefers-reduced-motion`. The desktop navigation, mobile menu, contact links and gallery lightbox are keyboard accessible.
