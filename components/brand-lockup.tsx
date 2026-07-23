@@ -21,9 +21,9 @@ export function BrandLockup({
         src="/images/brand/eco-magistral-mark.png"
         alt=""
         aria-hidden="true"
-        width={32}
-        height={32}
-        className="size-8 object-contain"
+        width={44}
+        height={44}
+        className="size-11 shrink-0 object-contain"
       />
       <span className={cn(compact && "hidden sm:inline")}>ECO MAGISTRAL</span>
     </span>
