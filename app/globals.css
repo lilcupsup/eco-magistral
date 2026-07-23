@@ -176,34 +176,6 @@ textarea:focus-visible {
   text-transform: uppercase;
 }
 
-.brand-mark {
-  position: relative;
-  display: inline-block;
-  width: 1.65rem;
-  height: 1rem;
-  flex: 0 0 auto;
-}
-
-.brand-mark span {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 0.12rem;
-  border-radius: 999px;
-  background: currentColor;
-  transform-origin: left center;
-}
-
-.brand-mark span:first-child {
-  top: 0.22rem;
-  transform: rotate(12deg) scaleX(0.8);
-}
-
-.brand-mark span:last-child {
-  bottom: 0.22rem;
-  transform: rotate(-12deg);
-}
-
 .glass-surface {
   border: 1px solid rgb(255 255 255 / 0.2);
   background:
