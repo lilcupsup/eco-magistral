@@ -4,26 +4,39 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight, Maximize2, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { A11y, Keyboard } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import type { Swiper as SwiperInstance } from "swiper/types";
 
 import { galleryImages } from "@/lib/content";
 import { useLanguage } from "@/lib/i18n";
 
 export function GallerySection() {
-  const [swiper, setSwiper] = useState<SwiperInstance | null>(null);
+  const [active, setActive] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const reduce = useReducedMotion();
   const { t } = useLanguage();
+
+  const showPrevious = () => {
+    setActive((value) => (value - 1 + galleryImages.length) % galleryImages.length);
+  };
+
+  const showNext = () => {
+    setActive((value) => (value + 1) % galleryImages.length);
+  };
 
   useEffect(() => {
     if (selected === null) return;
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") setSelected(null);
-      if (event.key === "ArrowRight") setSelected((value) => value === null ? 0 : (value + 1) % galleryImages.length);
-      if (event.key === "ArrowLeft") setSelected((value) => value === null ? 0 : (value - 1 + galleryImages.length) % galleryImages.length);
+      if (event.key === "ArrowRight") {
+        const next = (selected + 1) % galleryImages.length;
+        setSelected(next);
+        setActive(next);
+      }
+      if (event.key === "ArrowLeft") {
+        const previous = (selected - 1 + galleryImages.length) % galleryImages.length;
+        setSelected(previous);
+        setActive(previous);
+      }
     };
 
     const previousOverflow = document.body.style.overflow;
@@ -44,19 +57,19 @@ export function GallerySection() {
             {t.gallery.title}
           </h2>
         </div>
-        <div className="hidden gap-2 sm:flex">
+        <div className="flex shrink-0 gap-2">
           <button
             type="button"
-            onClick={() => swiper?.slidePrev()}
-            className="inline-flex size-12 cursor-pointer items-center justify-center rounded-full border border-ink/20 transition-colors hover:border-accent hover:bg-forest hover:text-white"
+            onClick={showPrevious}
+            className="inline-flex size-11 cursor-pointer items-center justify-center rounded-full border border-ink/20 transition-colors hover:border-accent hover:bg-forest hover:text-white sm:size-12"
             aria-label={t.gallery.previous}
           >
             <ArrowLeft className="size-4" strokeWidth={1.6} />
           </button>
           <button
             type="button"
-            onClick={() => swiper?.slideNext()}
-            className="inline-flex size-12 cursor-pointer items-center justify-center rounded-full border border-ink/20 transition-colors hover:border-accent hover:bg-forest hover:text-white"
+            onClick={showNext}
+            className="inline-flex size-11 cursor-pointer items-center justify-center rounded-full border border-ink/20 transition-colors hover:border-accent hover:bg-forest hover:text-white sm:size-12"
             aria-label={t.gallery.next}
           >
             <ArrowRight className="size-4" strokeWidth={1.6} />
@@ -64,44 +77,71 @@ export function GallerySection() {
         </div>
       </div>
 
-      <div className="mt-12 pl-[max(0.625rem,calc((100vw-90rem)/2))] md:mt-16">
-        <Swiper
-          modules={[A11y, Keyboard]}
-          onSwiper={setSwiper}
-          slidesPerView="auto"
-          spaceBetween={12}
-          keyboard={{ enabled: true }}
-          grabCursor
-          breakpoints={{ 768: { spaceBetween: 20 } }}
-          className="!overflow-visible"
+      <div className="site-container mt-12 md:mt-16">
+        <button
+          type="button"
+          onClick={() => setSelected(active)}
+          className="group relative block aspect-[4/3] w-full cursor-zoom-in overflow-hidden rounded-[var(--radius-card)] bg-paper text-left sm:aspect-[16/9]"
+          aria-label={`${t.gallery.open}: ${t.gallery.alts[active]}`}
         >
-          {galleryImages.map((image, index) => (
-            <SwiperSlide
-              key={image.src}
-              className={`!w-[84vw] sm:!w-[62vw] lg:!w-[46vw] ${index % 3 === 1 ? "lg:!w-[32vw]" : ""}`}
+          <AnimatePresence initial={false} mode="wait">
+            <motion.div
+              key={galleryImages[active].src}
+              initial={reduce ? false : { opacity: 0, scale: 1.015 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: reduce ? 0 : 0.45, ease: [0.16, 1, 0.3, 1] }}
+              className="absolute inset-0"
             >
-              <button
-                type="button"
-                onClick={() => setSelected(index)}
-                className={`group relative block w-full cursor-zoom-in overflow-hidden rounded-[var(--radius-card)] bg-paper-deep text-left ${
-                  index % 3 === 1 ? "aspect-[4/5]" : "aspect-[4/3]"
-                }`}
-                aria-label={`${t.gallery.open}: ${t.gallery.alts[index]}`}
-              >
-                <Image
-                  src={image.src}
-                  alt={t.gallery.alts[index]}
-                  fill
-                  sizes="(max-width: 640px) 84vw, (max-width: 1024px) 62vw, 46vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-                />
-                <span className="absolute bottom-4 right-4 inline-flex size-11 items-center justify-center rounded-full bg-paper text-ink opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
-                  <Maximize2 className="size-4" aria-hidden="true" strokeWidth={1.6} />
-                </span>
-              </button>
-            </SwiperSlide>
+              <Image
+                src={galleryImages[active].src}
+                alt={t.gallery.alts[active]}
+                fill
+                sizes="(max-width: 640px) 100vw, 90vw"
+                className="object-cover"
+                priority={active === 0}
+              />
+            </motion.div>
+          </AnimatePresence>
+          <span className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[rgb(5_18_12_/_0.42)] to-transparent" />
+          <span className="absolute bottom-4 right-4 inline-flex size-11 items-center justify-center rounded-full bg-paper text-ink shadow-lg transition-transform duration-300 group-hover:scale-105 sm:bottom-6 sm:right-6 sm:size-12">
+            <Maximize2 className="size-4" aria-hidden="true" strokeWidth={1.6} />
+          </span>
+        </button>
+
+        <div className="mt-4 flex items-start justify-between gap-6 border-b border-ink/15 pb-5">
+          <p className="max-w-2xl text-sm leading-relaxed text-ink-muted sm:text-base">
+            {t.gallery.alts[active]}
+          </p>
+          <p className="shrink-0 font-mono text-xs tracking-[0.14em] text-ink-muted">
+            {String(active + 1).padStart(2, "0")} / {String(galleryImages.length).padStart(2, "0")}
+          </p>
+        </div>
+
+        <div className="mt-5 flex gap-3 overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:grid lg:grid-cols-6 lg:overflow-visible lg:pb-0">
+          {galleryImages.map((image, index) => (
+            <button
+              type="button"
+              key={image.src}
+              onClick={() => setActive(index)}
+              className={`relative aspect-[4/3] w-32 shrink-0 cursor-pointer overflow-hidden rounded-xl transition-[opacity,transform,box-shadow] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-paper-deep sm:w-40 lg:w-auto ${
+                active === index
+                  ? "opacity-100 ring-2 ring-accent ring-offset-2 ring-offset-paper-deep"
+                  : "opacity-55 hover:-translate-y-0.5 hover:opacity-100"
+              }`}
+              aria-label={`${t.gallery.open}: ${t.gallery.alts[index]}`}
+              aria-current={active === index ? "true" : undefined}
+            >
+              <Image
+                src={image.src}
+                alt=""
+                fill
+                sizes="(max-width: 640px) 8rem, (max-width: 1024px) 10rem, 15vw"
+                className="object-cover"
+              />
+            </button>
           ))}
-        </Swiper>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -145,7 +185,11 @@ export function GallerySection() {
             </button>
             <button
               type="button"
-              onClick={() => setSelected((selected - 1 + galleryImages.length) % galleryImages.length)}
+              onClick={() => {
+                const previous = (selected - 1 + galleryImages.length) % galleryImages.length;
+                setSelected(previous);
+                setActive(previous);
+              }}
               className="absolute bottom-4 left-4 inline-flex size-12 cursor-pointer items-center justify-center rounded-full bg-paper text-ink sm:bottom-auto sm:left-7 sm:top-1/2 sm:-translate-y-1/2"
               aria-label={t.gallery.previousImage}
             >
@@ -153,7 +197,11 @@ export function GallerySection() {
             </button>
             <button
               type="button"
-              onClick={() => setSelected((selected + 1) % galleryImages.length)}
+              onClick={() => {
+                const next = (selected + 1) % galleryImages.length;
+                setSelected(next);
+                setActive(next);
+              }}
               className="absolute bottom-4 right-4 inline-flex size-12 cursor-pointer items-center justify-center rounded-full bg-paper text-ink sm:bottom-auto sm:right-7 sm:top-1/2 sm:-translate-y-1/2"
               aria-label={t.gallery.nextImage}
             >
