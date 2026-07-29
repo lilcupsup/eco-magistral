@@ -16,7 +16,9 @@ export const metadata: Metadata = {
   description:
     "Roads, landscapes and public spaces shaped as one connected environment.",
   icons: {
-    icon: "/images/brand/eco-magistral-mark-v2.png",
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
   },
   openGraph: {
     title: "ECO MAGISTRAL",
