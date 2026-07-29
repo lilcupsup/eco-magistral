@@ -27,10 +27,10 @@ export function SiteHeader() {
       <div className="light-glass-surface mx-auto flex h-14 max-w-[90rem] items-center justify-between rounded-full px-4 text-ink sm:h-16 sm:px-5">
         <a
           href="#top"
-          className="inline-flex min-h-11 items-center rounded-full px-1 text-[0.85rem] sm:text-sm"
+          className="inline-flex min-h-11 items-center rounded-full px-1"
           aria-label={t.header.home}
         >
-          <BrandLockup compact />
+          <BrandLockup compact className="text-lg" />
         </a>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label={t.header.primary}>
