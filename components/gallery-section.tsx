@@ -136,6 +136,7 @@ export function GallerySection() {
                 src={image.src}
                 alt=""
                 fill
+                loading="eager"
                 sizes="(max-width: 640px) 8rem, (max-width: 1024px) 10rem, 15vw"
                 className="object-cover"
               />
