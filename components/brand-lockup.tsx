@@ -5,9 +5,11 @@ import { cn } from "@/lib/utils";
 export function BrandLockup({
   className,
   compact = false,
+  inverse = false,
 }: {
   className?: string;
   compact?: boolean;
+  inverse?: boolean;
 }) {
   return (
     <span
@@ -23,7 +25,7 @@ export function BrandLockup({
         aria-hidden="true"
         width={44}
         height={44}
-        className="size-11 shrink-0 object-contain"
+        className={cn("size-11 shrink-0 object-contain", inverse && "brightness-0 invert")}
       />
       <span className={cn(compact && "hidden sm:inline")}>ECO MAGISTRAL</span>
     </span>

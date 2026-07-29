@@ -20,7 +20,7 @@ export function SiteFooter() {
       <div className="mx-auto max-w-[90rem] rounded-[var(--radius-card)] bg-forest px-5 py-8 sm:px-8 sm:py-10">
         <div className="grid gap-14 border-b border-white/15 pb-16 md:grid-cols-12 md:pb-24">
           <div className="md:col-span-7">
-            <BrandLockup className="text-lg" />
+            <BrandLockup inverse className="text-lg" />
             <p className="mt-8 max-w-3xl text-[clamp(2.25rem,5.5vw,6rem)] font-medium leading-[0.94] tracking-[-0.06em] text-balance">
               {t.footer.statement}
             </p>
