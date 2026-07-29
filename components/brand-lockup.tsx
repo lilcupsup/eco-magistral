@@ -18,7 +18,7 @@ export function BrandLockup({
       aria-label="ECO MAGISTRAL"
     >
       <Image
-        src="/images/brand/eco-magistral-mark.png"
+        src="/images/brand/eco-magistral-mark-v2.png"
         alt=""
         aria-hidden="true"
         width={44}
