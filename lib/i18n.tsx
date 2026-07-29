@@ -7,7 +7,6 @@ export type Language = "en" | "ru" | "hy";
 const translations = {
   en: {
     language: { label: "Choose language", names: { en: "English", ru: "Russian", hy: "Armenian" } },
-    theme: { light: "Switch to light theme", dark: "Switch to dark theme" },
     skip: "Skip to content",
     nav: { about: "About", services: "Services", projects: "Projects", contact: "Contact", equipment: "Equipment", gallery: "Gallery" },
     header: { home: "ECO MAGISTRAL home", start: "Start a Project", open: "Open menu", close: "Close menu", primary: "Primary navigation", mobile: "Mobile navigation" },
@@ -75,7 +74,6 @@ const translations = {
   },
   ru: {
     language: { label: "Выбрать язык", names: { en: "Английский", ru: "Русский", hy: "Армянский" } },
-    theme: { light: "Включить светлую тему", dark: "Включить тёмную тему" },
     skip: "Перейти к содержанию",
     nav: { about: "О компании", services: "Услуги", projects: "Проекты", contact: "Контакты", equipment: "Техника", gallery: "Галерея" },
     header: { home: "Главная ECO MAGISTRAL", start: "Обсудить проект", open: "Открыть меню", close: "Закрыть меню", primary: "Основная навигация", mobile: "Мобильная навигация" },
@@ -131,7 +129,6 @@ const translations = {
   },
   hy: {
     language: { label: "Ընտրել լեզուն", names: { en: "Անգլերեն", ru: "Ռուսերեն", hy: "Հայերեն" } },
-    theme: { light: "Միացնել բաց թեման", dark: "Միացնել մուգ թեման" },
     skip: "Անցնել բովանդակությանը",
     nav: { about: "Մեր մասին", services: "Ծառայություններ", projects: "Նախագծեր", contact: "Կապ", equipment: "Տեխնիկա", gallery: "Պատկերասրահ" },
     header: { home: "ECO MAGISTRAL գլխավոր էջ", start: "Քննարկել նախագիծը", open: "Բացել ընտրացանկը", close: "Փակել ընտրացանկը", primary: "Հիմնական նավարկում", mobile: "Բջջային նավարկում" },

@@ -20,32 +20,17 @@
 | Role | Hex | CSS Variable |
 |------|-----|--------------|
 | Primary | `#123D2C` | `--color-primary` |
-| On Primary | `#F2F4EF` | `--color-on-primary` |
-| Secondary | `#171D1A` | `--color-secondary` |
-| Accent/CTA | `#205C42` | `--color-accent` |
-| Background | `#F2F4EF` | `--color-background` |
-| Foreground | `#171D1A` | `--color-foreground` |
-| Muted | `#E8EBE5` | `--color-muted` |
-| Border | `rgba(23,29,26,0.14)` | `--color-border` |
+| On Primary | `#FFFFFF` | `--color-on-primary` |
+| Secondary | `#131A16` | `--color-secondary` |
+| Accent/CTA | `#1D5A3E` | `--color-accent` |
+| Background | `#F7F9F6` | `--color-background` |
+| Foreground | `#131A16` | `--color-foreground` |
+| Muted | `#E9EEE9` | `--color-muted` |
+| Border | `rgba(19,26,22,0.12)` | `--color-border` |
 | Destructive | `#A23333` | `--color-destructive` |
 | Ring | `#205C42` | `--color-ring` |
 
-**Color Notes:** Cold architectural forest palette with graphite and mineral off-white
-
-#### Dark Theme
-
-| Role | Hex | CSS Variable |
-|------|-----|--------------|
-| Background | `#0D1410` | `--paper` |
-| Elevated Surface | `#131D17` | `--paper-deep` |
-| Tinted Section | `#101A14` | `--section-tint` |
-| Primary Text | `#EDF3EE` | `--ink` |
-| Secondary Text | `#A5B0A9` | `--ink-muted` |
-| Brand Surface | `#215F43` | `--forest` |
-| Interactive Accent | `#73C99C` | `--accent` |
-| Footer Shell | `#070B09` | `--footer-shell` |
-
-Dark mode uses layered forest-graphite surfaces rather than inverted colors. Bright accent green is reserved for text, icons, focus and fine borders; deep brand green remains the button and panel surface so white labels retain AA contrast.
+**Color Notes:** Single light architectural theme with graphite typography, mineral off-white surfaces and restrained forest-green interaction color. Dark surfaces are reserved for photography overlays, the cinematic hero and the footer.
 
 ### Typography
 

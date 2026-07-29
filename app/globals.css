@@ -19,35 +19,20 @@
 }
 
 :root {
-  --paper: #f2f4ef;
-  --paper-deep: #e8ebe5;
-  --ink: #171d1a;
-  --ink-muted: #5c6761;
+  color-scheme: light;
+  --paper: #f7f9f6;
+  --paper-deep: #e9eee9;
+  --ink: #131a16;
+  --ink-muted: #59645e;
   --forest: #123d2c;
-  --forest-bright: #205c42;
+  --forest-bright: #1d5a3e;
   --accent: #123d2c;
-  --line: rgba(23, 29, 26, 0.14);
-  --field-line: rgba(23, 29, 26, 0.28);
-  --section-tint: #e4e9e2;
-  --surface-dark: #111916;
-  --footer-shell: #0a0f0c;
-  --radius-card: 1rem;
+  --line: rgba(19, 26, 22, 0.12);
+  --section-tint: #edf2ed;
+  --surface-dark: #101814;
+  --footer-shell: #0b100d;
+  --radius-card: 1.25rem;
   --header-height: 4.5rem;
-}
-
-:root[data-theme="dark"] {
-  --paper: #0d1410;
-  --paper-deep: #131d17;
-  --ink: #edf3ee;
-  --ink-muted: #a5b0a9;
-  --forest: #215f43;
-  --forest-bright: #2b7653;
-  --accent: #73c99c;
-  --line: rgba(237, 243, 238, 0.14);
-  --field-line: rgba(237, 243, 238, 0.28);
-  --section-tint: #101a14;
-  --surface-dark: #080e0b;
-  --footer-shell: #070b09;
 }
 
 * {
@@ -67,12 +52,13 @@ html {
 body {
   margin: 0;
   overflow-x: clip;
-  background: var(--paper);
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.96) 0, var(--paper) 30rem),
+    var(--paper);
   color: var(--ink);
   font-family: "Manrope Variable", "Segoe UI", sans-serif;
   font-synthesis: none;
   text-rendering: geometricPrecision;
-  transition: background-color 320ms cubic-bezier(0.16, 1, 0.3, 1), color 240ms ease;
 }
 
 html[lang="hy"] body {
@@ -103,14 +89,9 @@ html[lang="hy"] #projects h3 {
   line-height: 1.25;
 }
 
-section,
-footer {
-  transition: background-color 320ms cubic-bezier(0.16, 1, 0.3, 1), border-color 240ms ease;
-}
-
 ::selection {
   background: var(--forest);
-  color: var(--paper);
+  color: #ffffff;
 }
 
 a,
@@ -188,6 +169,19 @@ textarea:focus-visible {
   -webkit-backdrop-filter: blur(24px) saturate(135%);
 }
 
+.light-glass-surface {
+  border: 1px solid rgb(255 255 255 / 0.72);
+  background:
+    linear-gradient(135deg, rgb(255 255 255 / 0.9), rgb(247 249 246 / 0.68)),
+    rgb(247 249 246 / 0.72);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.96),
+    0 18px 54px rgb(35 48 40 / 0.13),
+    0 1px 0 rgb(18 61 44 / 0.08);
+  backdrop-filter: blur(24px) saturate(145%);
+  -webkit-backdrop-filter: blur(24px) saturate(145%);
+}
+
 .image-scrim::after {
   content: "";
   position: absolute;
@@ -238,6 +232,12 @@ textarea:focus-visible {
 @media (prefers-reduced-transparency: reduce) {
   .glass-surface {
     background: rgb(20 28 24 / 0.96);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .light-glass-surface {
+    background: rgb(247 249 246 / 0.98);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }
