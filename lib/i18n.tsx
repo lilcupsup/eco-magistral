@@ -8,9 +8,9 @@ const translations = {
   en: {
     language: { label: "Choose language", names: { en: "English", ru: "Russian", hy: "Armenian" } },
     skip: "Skip to content",
-    nav: { about: "About", services: "Services", projects: "Projects", contact: "Contact", equipment: "Equipment", gallery: "Gallery" },
+    nav: { about: "About", services: "Capabilities", principles: "Principles", contact: "Contact", equipment: "Equipment" },
     header: { home: "ECO MAGISTRAL home", start: "Start a Project", open: "Open menu", close: "Close menu", primary: "Primary navigation", mobile: "Mobile navigation" },
-    hero: { tagline: "Building Modern Infrastructure", cta: "View Projects", play: "Play background film", pause: "Pause background film" },
+    hero: { tagline: "Building Modern Infrastructure", cta: "Explore Capabilities", play: "Play background film", pause: "Pause background film" },
     about: {
       eyebrow: "About ECO MAGISTRAL",
       title: "Infrastructure that connects people, place and progress.",
@@ -31,20 +31,6 @@ const translations = {
         { title: "Integrated Project Delivery", description: "Planning, coordination and execution across connected infrastructure scopes." },
       ],
     },
-    projects: {
-      eyebrow: "Selected Work",
-      title: "Built environments, seen as a whole.",
-      intro: "Mobility, landscape and public life come together across each project type.",
-      imageSuffix: "project environment",
-      items: [
-        { title: "Road Infrastructure", description: "Clear movement, durable surfaces and a measured response to terrain." },
-        { title: "Parks & Landscaping", description: "Green systems designed as lasting public infrastructure." },
-        { title: "Playgrounds", description: "Play environments shaped around safety, movement and discovery." },
-        { title: "Football Fields", description: "Sporting spaces integrated with their wider landscape." },
-        { title: "Parking & Access", description: "Organized arrival and circulation with a human scale." },
-        { title: "Public Spaces", description: "Civic places made for access, comfort and everyday life." },
-      ],
-    },
     principles: {
       title: "A disciplined approach to every environment.",
       intro: "The strongest project decisions come from seeing the site as one connected system.",
@@ -62,10 +48,6 @@ const translations = {
       imageAlt: "Modern road construction equipment working in Armenian mountain terrain",
       groups: ["Earthworks", "Road Construction", "Compaction", "Site Support", "Landscape Works"],
     },
-    gallery: {
-      title: "Infrastructure in its real context.", previous: "Previous gallery image", next: "Next gallery image", viewer: "Gallery image viewer", close: "Close gallery viewer", open: "Open image", previousImage: "Previous image", nextImage: "Next image",
-      alts: ["Contemporary public space finished in Armenian tuff stone", "Landscaped public park with pedestrian infrastructure", "Modern playground integrated into a landscaped park", "Community football field in a mountain landscape", "Landscaped parking and site access", "Road construction equipment working in mountain terrain"],
-    },
     contact: {
       eyebrow: "Contact", title: "Let’s discuss what comes next.", intro: "Reach our team directly to discuss a site, a project scope or a potential partnership.",
       labels: { phone: "Phone", whatsapp: "WhatsApp", email: "Email", hours: "Working hours" }, hours: "Mon–Fri, 09:00–18:00", socialTitle: "Follow ECO MAGISTRAL",
@@ -75,9 +57,9 @@ const translations = {
   ru: {
     language: { label: "Выбрать язык", names: { en: "Английский", ru: "Русский", hy: "Армянский" } },
     skip: "Перейти к содержанию",
-    nav: { about: "О компании", services: "Услуги", projects: "Проекты", contact: "Контакты", equipment: "Техника", gallery: "Галерея" },
+    nav: { about: "О компании", services: "Компетенции", principles: "Принципы", contact: "Контакты", equipment: "Техника" },
     header: { home: "Главная ECO MAGISTRAL", start: "Обсудить проект", open: "Открыть меню", close: "Закрыть меню", primary: "Основная навигация", mobile: "Мобильная навигация" },
-    hero: { tagline: "Создаём современную инфраструктуру", cta: "Смотреть проекты", play: "Включить фоновое видео", pause: "Приостановить фоновое видео" },
+    hero: { tagline: "Создаём современную инфраструктуру", cta: "Наши компетенции", play: "Включить фоновое видео", pause: "Приостановить фоновое видео" },
     about: {
       eyebrow: "О компании ECO MAGISTRAL", title: "Инфраструктура, соединяющая людей, места и прогресс.",
       first: "ECO MAGISTRAL объединяет дороги, ландшафт и общественную инфраструктуру в единую концепцию. Движение, доступность, безопасность и экология становятся частью одной среды.",
@@ -94,17 +76,6 @@ const translations = {
         { title: "Комплексная реализация проектов", description: "Планирование, координация и выполнение взаимосвязанных инфраструктурных работ." },
       ],
     },
-    projects: {
-      eyebrow: "Избранные проекты", title: "Созданная среда как единое целое.", intro: "Мобильность, ландшафт и общественная жизнь соединяются в каждом типе проектов.", imageSuffix: "— реализованная инфраструктура",
-      items: [
-        { title: "Дорожная инфраструктура", description: "Понятная организация движения, долговечные покрытия и точная работа с рельефом." },
-        { title: "Парки и озеленение", description: "Зелёные системы, созданные как долговечная общественная инфраструктура." },
-        { title: "Детские площадки", description: "Игровая среда, построенная вокруг безопасности, движения и открытий." },
-        { title: "Футбольные поля", description: "Спортивные пространства, интегрированные в окружающий ландшафт." },
-        { title: "Парковки и подъездные пути", description: "Организованные зоны прибытия и движения в комфортном для человека масштабе." },
-        { title: "Общественные пространства", description: "Городские места для доступности, комфорта и повседневной жизни." },
-      ],
-    },
     principles: {
       title: "Дисциплинированный подход к каждой территории.", intro: "Сильные проектные решения рождаются из понимания площадки как единой взаимосвязанной системы.",
       items: [
@@ -117,10 +88,6 @@ const translations = {
     equipment: {
       title: "Точная техника для каждой задачи.", intro: "Оборудование подбирается с учётом условий площадки, последовательности работ и требуемого качества результата.", caption: "От подготовки основания до финишных покрытий техника, планирование и строительные команды работают как единая система.", imageAlt: "Современная дорожная техника работает в горной местности Армении", groups: ["Земляные работы", "Дорожное строительство", "Уплотнение", "Обеспечение площадки", "Ландшафтные работы"],
     },
-    gallery: {
-      title: "Инфраструктура в реальном контексте.", previous: "Предыдущее изображение галереи", next: "Следующее изображение галереи", viewer: "Просмотр галереи", close: "Закрыть галерею", open: "Открыть изображение", previousImage: "Предыдущее изображение", nextImage: "Следующее изображение",
-      alts: ["Современное общественное пространство с отделкой из армянского туфа", "Благоустроенный общественный парк с пешеходной инфраструктурой", "Современная детская площадка в ландшафтном парке", "Общественное футбольное поле в горном ландшафте", "Озеленённая парковка и подъездные пути", "Дорожная техника работает в горной местности"],
-    },
     contact: {
       eyebrow: "Контакты", title: "Обсудим ваш следующий проект.", intro: "Свяжитесь с нашей командой напрямую, чтобы обсудить площадку, объём работ или возможное партнёрство.",
       labels: { phone: "Телефон", whatsapp: "WhatsApp", email: "Электронная почта", hours: "Часы работы" }, hours: "Пн–Пт, 09:00–18:00", socialTitle: "ECO MAGISTRAL в социальных сетях",
@@ -130,9 +97,9 @@ const translations = {
   hy: {
     language: { label: "Ընտրել լեզուն", names: { en: "Անգլերեն", ru: "Ռուսերեն", hy: "Հայերեն" } },
     skip: "Անցնել բովանդակությանը",
-    nav: { about: "Մեր մասին", services: "Ծառայություններ", projects: "Նախագծեր", contact: "Կապ", equipment: "Տեխնիկա", gallery: "Պատկերասրահ" },
+    nav: { about: "Մեր մասին", services: "Կարողություններ", principles: "Սկզբունքներ", contact: "Կապ", equipment: "Տեխնիկա" },
     header: { home: "ECO MAGISTRAL գլխավոր էջ", start: "Քննարկել նախագիծը", open: "Բացել ընտրացանկը", close: "Փակել ընտրացանկը", primary: "Հիմնական նավարկում", mobile: "Բջջային նավարկում" },
-    hero: { tagline: "Կառուցում ենք ժամանակակից ենթակառուցվածքներ", cta: "Դիտել նախագծերը", play: "Միացնել ֆոնային տեսանյութը", pause: "Դադարեցնել ֆոնային տեսանյութը" },
+    hero: { tagline: "Կառուցում ենք ժամանակակից ենթակառուցվածքներ", cta: "Մեր կարողությունները", play: "Միացնել ֆոնային տեսանյութը", pause: "Դադարեցնել ֆոնային տեսանյութը" },
     about: {
       eyebrow: "ECO MAGISTRAL-ի մասին", title: "Ենթակառուցվածք, որը միավորում է մարդկանց, վայրերն ու առաջընթացը։",
       first: "ECO MAGISTRAL-ը միավորում է ճանապարհները, լանդշաֆտը և հանրային ենթակառուցվածքները մեկ համակարգված տեսլականում։ Շարժունակությունը, հասանելիությունը, անվտանգությունն ու էկոլոգիան նույն միջավայրի մասերն են։",
@@ -149,17 +116,6 @@ const translations = {
         { title: "Նախագծերի համալիր իրականացում", description: "Փոխկապակցված ենթակառուցվածքային աշխատանքների պլանավորում, համակարգում և իրականացում։" },
       ],
     },
-    projects: {
-      eyebrow: "Ընտրված նախագծեր", title: "Կառուցված միջավայրը՝ որպես մեկ ամբողջություն։", intro: "Շարժունակությունը, լանդշաֆտը և հանրային կյանքը միավորվում են յուրաքանչյուր տեսակի նախագծում։", imageSuffix: "նախագծային միջավայր",
-      items: [
-        { title: "Ճանապարհային ենթակառուցվածք", description: "Հստակ երթևեկություն, դիմացկուն ծածկույթներ և ռելիեֆին համաչափ մոտեցում։" },
-        { title: "Այգիներ և կանաչապատում", description: "Երկարակյաց հանրային ենթակառուցվածքի պես նախագծված կանաչ համակարգեր։" },
-        { title: "Մանկական խաղահրապարակներ", description: "Անվտանգության, շարժման և բացահայտման շուրջ կառուցված խաղային միջավայրեր։" },
-        { title: "Ֆուտբոլի դաշտեր", description: "Շրջակա լանդշաֆտին ինտեգրված մարզական տարածքներ։" },
-        { title: "Ավտոկայանատեղիներ և մուտքեր", description: "Մարդկային մասշտաբով կազմակերպված ժամանման և տեղաշարժի գոտիներ։" },
-        { title: "Հանրային տարածքներ", description: "Հասանելիության, հարմարավետության և առօրյա կյանքի համար ստեղծված քաղաքային վայրեր։" },
-      ],
-    },
     principles: {
       title: "Կարգապահ մոտեցում յուրաքանչյուր միջավայրին։", intro: "Լավագույն նախագծային որոշումները ծնվում են տարածքը որպես մեկ փոխկապակցված համակարգ դիտարկելուց։",
       items: [
@@ -171,10 +127,6 @@ const translations = {
     },
     equipment: {
       title: "Ճիշտ տեխնիկան՝ յուրաքանչյուր աշխատանքի համար։", intro: "Տեխնիկան ընտրվում է շինհրապարակի պայմանների, աշխատանքների հերթականության և պահանջվող վերջնական որակի հիման վրա։", caption: "Հողի նախապատրաստումից մինչև վերջնական ծածկույթներ՝ տեխնիկան, պլանավորումն ու աշխատանքային խմբերը գործում են որպես մեկ համակարգ։", imageAlt: "Ժամանակակից ճանապարհաշինական տեխնիկան աշխատում է Հայաստանի լեռնային տեղանքում", groups: ["Հողային աշխատանքներ", "Ճանապարհաշինություն", "Խտացում", "Շինհրապարակի ապահովում", "Կանաչապատման աշխատանքներ"],
-    },
-    gallery: {
-      title: "Ենթակառուցվածքն իր իրական միջավայրում։", previous: "Պատկերասրահի նախորդ նկարը", next: "Պատկերասրահի հաջորդ նկարը", viewer: "Պատկերասրահի դիտում", close: "Փակել պատկերասրահը", open: "Բացել նկարը", previousImage: "Նախորդ նկարը", nextImage: "Հաջորդ նկարը",
-      alts: ["Հայկական տուֆով ավարտված ժամանակակից հանրային տարածք", "Հետիոտնային ենթակառուցվածքով բարեկարգված հանրային այգի", "Լանդշաֆտային այգում ինտեգրված ժամանակակից խաղահրապարակ", "Համայնքային ֆուտբոլի դաշտ լեռնային լանդշաֆտում", "Կանաչապատված ավտոկայանատեղի և մուտքային ուղի", "Ճանապարհաշինական տեխնիկա լեռնային տեղանքում"],
     },
     contact: {
       eyebrow: "Կապ", title: "Քննարկենք ձեր հաջորդ նախագիծը։", intro: "Կապվեք մեր թիմի հետ՝ տարածքը, աշխատանքների ծավալը կամ հնարավոր համագործակցությունը քննարկելու համար։",

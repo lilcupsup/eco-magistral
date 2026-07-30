@@ -34,27 +34,6 @@ export const services = [
   },
 ];
 
-export const projects = [
-  {
-    image: "/images/hero/eco-magistral-hero.avif",
-  },
-  {
-    image: "/images/projects/landscaping.avif",
-  },
-  {
-    image: "/images/projects/playground.avif",
-  },
-  {
-    image: "/images/projects/football-field.avif",
-  },
-  {
-    image: "/images/projects/parking.avif",
-  },
-  {
-    image: "/images/projects/public-space.avif",
-  },
-];
-
 export const principles = [
   {
     icon: Construction,
@@ -76,13 +55,4 @@ export const equipmentGroups = [
   { icon: Construction },
   { icon: ShieldCheck },
   { icon: Leaf },
-];
-
-export const galleryImages = [
-  { src: "/images/projects/public-space.avif" },
-  { src: "/images/projects/landscaping.avif" },
-  { src: "/images/projects/playground.avif" },
-  { src: "/images/projects/football-field.avif" },
-  { src: "/images/projects/parking.avif" },
-  { src: "/images/equipment/equipment.avif" },
 ];

@@ -83,7 +83,7 @@ export function Hero() {
           initial={reduce ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: reduce ? 0 : 0.38, ease: [0.16, 1, 0.3, 1] }}
-          href="#projects"
+          href="#services"
           className={cn(buttonVariants({ variant: "glass", size: "large" }), "mt-8")}
         >
           {t.hero.cta}

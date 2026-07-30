@@ -1,7 +1,4 @@
 import type { Metadata } from "next";
-import "swiper/css";
-import "swiper/css/a11y";
-import "swiper/css/navigation";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n";
 

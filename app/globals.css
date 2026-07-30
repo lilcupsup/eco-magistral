@@ -78,15 +78,19 @@ html[lang="hy"] .about-heading {
   overflow-wrap: anywhere;
 }
 
+html[lang="hy"] .principles-heading {
+  max-width: 15ch;
+  font-size: clamp(2.35rem, 3.45vw, 4rem);
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
 html[lang="hy"] .eyebrow {
   letter-spacing: 0.08em;
   text-transform: none;
-}
-
-html[lang="hy"] #projects h3 {
-  overflow-wrap: anywhere;
-  letter-spacing: -0.025em;
-  line-height: 1.25;
 }
 
 ::selection {
@@ -119,6 +123,10 @@ textarea:focus-visible {
 
 .section-pad {
   padding-block: clamp(6rem, 12vw, 11rem);
+}
+
+.section-pad-compact {
+  padding-block: clamp(4.5rem, 8vw, 7.5rem);
 }
 
 .display-xl {
@@ -211,6 +219,10 @@ textarea:focus-visible {
 
   .section-pad {
     padding-block: 5.5rem;
+  }
+
+  .section-pad-compact {
+    padding-block: 4.5rem;
   }
 }
 

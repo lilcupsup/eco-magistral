@@ -10,9 +10,8 @@ export function SiteFooter() {
   const footerLinks = [
     { label: t.nav.about, href: "#about" },
     { label: t.nav.services, href: "#services" },
-    { label: t.nav.projects, href: "#projects" },
+    { label: t.nav.principles, href: "#why-us" },
     { label: t.nav.equipment, href: "#equipment" },
-    { label: t.nav.gallery, href: "#gallery" },
     { label: t.nav.contact, href: "#contact" },
   ];
   return (
