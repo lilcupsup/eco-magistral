@@ -12,7 +12,7 @@ export function PrinciplesSection() {
         <Reveal className="lg:col-span-5">
           <h2
             id="principles-heading"
-            className="principles-heading display-md max-w-[11ch] text-balance"
+            className="principles-heading display-md max-w-[11ch] break-words text-balance"
           >
             {t.principles.title}
           </h2>
