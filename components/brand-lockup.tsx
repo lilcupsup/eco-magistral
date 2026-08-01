@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { assetPath } from "@/lib/assets";
 import { cn } from "@/lib/utils";
 
 export function BrandLockup({
@@ -20,7 +21,7 @@ export function BrandLockup({
       aria-label="ECO MAGISTRAL"
     >
       <Image
-        src="/images/brand/eco-magistral-mark-v2.png"
+        src={assetPath("/images/brand/eco-magistral-mark-v2.png")}
         alt=""
         aria-hidden="true"
         width={44}

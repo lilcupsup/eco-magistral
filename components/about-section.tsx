@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ArrowDownRight } from "lucide-react";
 
 import { Reveal } from "@/components/reveal";
+import { assetPath } from "@/lib/assets";
 import { useLanguage } from "@/lib/i18n";
 
 export function AboutSection() {
@@ -40,7 +41,7 @@ export function AboutSection() {
           <Reveal className="md:col-span-5 md:ml-auto md:w-[92%]" delay={0.12}>
             <figure className="relative aspect-[4/5] overflow-hidden rounded-[var(--radius-card)] bg-paper-deep">
               <Image
-                src="/images/projects/landscaping.avif"
+                src={assetPath("/images/projects/landscaping.avif")}
                 alt={t.about.imageAlt}
                 fill
                 sizes="(max-width: 768px) 100vw, 40vw"

@@ -3,6 +3,7 @@
 import Image from "next/image";
 
 import { Reveal } from "@/components/reveal";
+import { assetPath } from "@/lib/assets";
 import { equipmentGroups } from "@/lib/content";
 import { useLanguage } from "@/lib/i18n";
 
@@ -24,7 +25,7 @@ export function EquipmentSection() {
           <Reveal delay={0.08} className="lg:col-span-8">
           <div className="relative aspect-[4/5] overflow-hidden rounded-[var(--radius-card)] bg-[var(--surface-dark)] sm:aspect-[16/10] sm:min-h-[25rem]">
             <Image
-              src="/images/equipment/equipment.avif"
+              src={assetPath("/images/equipment/equipment.avif")}
               alt={t.equipment.imageAlt}
               fill
               sizes="(max-width: 1024px) 100vw, 68vw"

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 
+import { assetPath } from "@/lib/assets";
 import { services } from "@/lib/content";
 import { useLanguage } from "@/lib/i18n";
 
@@ -76,7 +77,7 @@ export function ServicesSection() {
                   className="absolute inset-0"
                 >
                   <Image
-                    src={current.image}
+                    src={assetPath(current.image)}
                     alt=""
                     fill
                     sizes="(max-width: 768px) 100vw, 58vw"
