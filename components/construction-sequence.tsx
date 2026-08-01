@@ -13,9 +13,10 @@ gsap.registerPlugin(ScrollTrigger);
 const FRAME_COUNT = 240;
 const LAST_FRAME = FRAME_COUNT - 1;
 const MAX_CACHE_SIZE = 28;
+const assetBase = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 function frameSource(index: number) {
-  return `/video/construction-sequence/ezgif-frame-${String(index + 1).padStart(3, "0")}.jpg`;
+  return `${assetBase}/video/construction-sequence/ezgif-frame-${String(index + 1).padStart(3, "0")}.jpg`;
 }
 
 export function ConstructionSequence() {

@@ -8,6 +8,8 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/lib/i18n";
 
+const assetBase = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const reduce = useReducedMotion();
@@ -49,10 +51,10 @@ export function Hero() {
         loop
         playsInline
         preload="metadata"
-        poster="/images/hero/eco-magistral-hero.avif"
+        poster={`${assetBase}/images/hero/eco-magistral-hero.avif`}
         aria-hidden="true"
       >
-        <source src="/video/eco-magistral-hero.mp4" type="video/mp4" />
+        <source src={`${assetBase}/video/eco-magistral-hero.mp4`} type="video/mp4" />
       </video>
 
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,14,11,.44)_0%,rgba(8,14,11,.15)_42%,rgba(8,14,11,.58)_100%)]" />
