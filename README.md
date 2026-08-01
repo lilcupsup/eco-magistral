@@ -1,15 +1,47 @@
 # ECO MAGISTRAL
 
-Premium, responsive infrastructure-company homepage built with Next.js, React, TypeScript and Tailwind CSS.
+Премиальный многоязычный сайт-визитка строительной компании **ECO MAGISTRAL**. Сайт рассказывает о дорожной, городской, спортивной и ландшафтной инфраструктуре через минималистичный интерфейс, крупную типографику и интерактивные сцены.
 
-## Run locally
+**Сайт:** [lilcupsup.github.io/eco-magistral](https://lilcupsup.github.io/eco-magistral/)
+
+## О сайте
+
+ECO MAGISTRAL — одностраничный сайт для презентации компании, её подхода, компетенций, техники и каналов связи. Дизайн построен вокруг светлой архитектурной эстетики: белых и графитовых поверхностей, глубокого зелёного акцента, спокойных сеток и воздушной типографики.
+
+На странице есть:
+
+- полноэкранный hero-блок с видео;
+- информация о компании и её подходе к инфраструктуре;
+- интерактивный блок компетенций;
+- scroll-driven последовательность из 240 кадров: от подготовки площадки до готовой дороги;
+- принципы работы и парк техники;
+- контакты, WhatsApp и социальные сети;
+- переключение между русским, английским и армянским языками;
+- адаптивная версия для телефонов и планшетов.
+
+## Технологии
+
+- [Next.js 16](https://nextjs.org/) и React 19
+- TypeScript
+- Tailwind CSS 4
+- GSAP + ScrollTrigger — анимация строительства при прокрутке
+- Motion — переходы интерфейса
+- Lenis — плавная прокрутка
+- Lucide Icons
+- Manrope и Noto Sans Armenian — типографика для трёх языков
+
+## Быстрый запуск
+
+Требуется Node.js 24 или новее.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Production verification:
+Откройте [http://localhost:3000](http://localhost:3000).
+
+## Проверка перед публикацией
 
 ```bash
 npm run typecheck
@@ -17,23 +49,68 @@ npm run lint
 npm run build
 ```
 
-## Environment
+`npm run build` создаёт статическую версию сайта в папке `out/`.
 
-Copy `.env.example` to `.env.local` and configure:
+## Переменные окружения
 
-- `NEXT_PUBLIC_SITE_URL`: canonical production origin for SEO metadata.
+Создайте `.env.local` на основе `.env.example` при необходимости:
 
-## Media
+```env
+NEXT_PUBLIC_SITE_URL=https://your-domain.example
+```
 
-- Project photography and the hero poster were generated specifically for ECO MAGISTRAL and optimized to AVIF for web delivery.
-- The local hero film is the free-to-use Pexels clip [Drone Video of a Road in a Mountain Valley](https://www.pexels.com/video/drone-video-of-a-road-in-a-mountain-valley-13978571/) by Serg Alesenko. Review the [Pexels license](https://www.pexels.com/license/) before redistribution.
+Переменная используется для SEO-метаданных и ссылок Open Graph. Для локальной разработки она не обязательна.
 
-## Interaction system
+## Структура проекта
 
-- GSAP + ScrollTrigger: one desktop horizontal project story.
-- Motion: entrances, menu and gallery state transitions.
-- Lenis: smooth wheel scrolling with reduced-motion fallback.
-- Swiper: touch-friendly gallery.
-- Lucide: consistent outline icon family.
+```text
+app/                    Страница, глобальные стили и metadata
+components/             Секции лендинга и UI-компоненты
+lib/i18n.tsx            Словари RU / EN / HY и переключатель языка
+lib/assets.ts            Корректные пути к медиа для GitHub Pages
+public/images/          Логотип, фотографии и постеры
+public/video/           Hero-видео и кадры строительной последовательности
+.github/workflows/      Автоматическая публикация на GitHub Pages
+```
 
-All motion respects `prefers-reduced-motion`. The desktop navigation, mobile menu, contact links and gallery lightbox are keyboard accessible.
+## Интерактивная строительная последовательность
+
+Блок «Инфраструктура создаётся шаг за шагом» не использует тяжёлый видеоплеер. Вместо этого Canvas отображает последовательность кадров, синхронизированную с прокруткой:
+
+- 240 кадров на десктопе;
+- облегчённая выборка кадров на мобильных устройствах;
+- ограниченный кэш изображений для экономии памяти;
+- четыре локализованных этапа работ;
+- финальный кадр для пользователей с включённым `prefers-reduced-motion`.
+
+## Публикация на GitHub Pages
+
+Сайт публикуется автоматически через GitHub Actions. Workflow находится в [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) и запускается при каждом пуше в ветку `main`.
+
+GitHub Actions:
+
+1. устанавливает зависимости через `npm ci`;
+2. собирает статический сайт;
+3. загружает папку `out/` в GitHub Pages.
+
+Для project site используется адрес:
+
+```text
+https://lilcupsup.github.io/eco-magistral/
+```
+
+Пути к изображениям и видео автоматически получают префикс `/eco-magistral/` во время GitHub Pages-сборки. Поэтому сайт одинаково корректно работает локально и в опубликованной версии.
+
+## Доступность и motion
+
+- Все основные разделы доступны с клавиатуры.
+- В интерфейсе предусмотрена ссылка «Перейти к содержимому».
+- Анимации и плавная прокрутка учитывают системную настройку `prefers-reduced-motion`.
+
+## Медиа
+
+Фотографии, логотип и видео лежат в `public/`. Перед заменой медиафайлов сохраняйте существующие имена или обновляйте пути в компонентах. Hero-видео основано на [видеоматериале Pexels](https://www.pexels.com/video/drone-video-of-a-road-in-a-mountain-valley-13978571/) — перед повторным распространением проверьте [лицензию Pexels](https://www.pexels.com/license/).
+
+---
+
+© 2026 ECO MAGISTRAL. Infrastructure, landscape and public space.
