@@ -98,6 +98,12 @@ html[lang="hy"] .process-heading {
   hyphens: none;
 }
 
+html[lang="hy"] .footer-statement {
+  font-size: clamp(1.7rem, 5vw, 5.5rem);
+  letter-spacing: -0.035em;
+  line-height: 1.04;
+}
+
 html[lang="hy"] .eyebrow {
   letter-spacing: 0.08em;
   text-transform: none;

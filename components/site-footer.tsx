@@ -20,7 +20,7 @@ export function SiteFooter() {
         <div className="grid gap-14 border-b border-white/15 pb-16 md:grid-cols-12 md:pb-24">
           <div className="md:col-span-7">
             <BrandLockup inverse className="text-lg" />
-            <p className="mt-8 max-w-3xl text-[clamp(2.25rem,5.5vw,6rem)] font-medium leading-[0.94] tracking-[-0.06em] text-balance">
+            <p className="footer-statement mt-8 max-w-3xl break-words text-[clamp(2.25rem,5.5vw,6rem)] font-medium leading-[0.94] tracking-[-0.06em] text-balance">
               {t.footer.statement}
             </p>
           </div>
@@ -29,7 +29,7 @@ export function SiteFooter() {
               <a
                 key={link.href}
                 href={link.href}
-                className="group flex min-h-12 items-center justify-between border-b border-white/15 text-sm text-white/74 transition-colors hover:text-white"
+                className="group flex min-h-12 min-w-0 items-center justify-between gap-2 break-words border-b border-white/15 text-sm leading-5 text-white/74 transition-colors hover:text-white"
               >
                 {link.label}
                 <ArrowUpRight className="size-3.5 opacity-0 transition-opacity group-hover:opacity-100" aria-hidden="true" strokeWidth={1.6} />
