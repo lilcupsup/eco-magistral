@@ -2,6 +2,7 @@
 
 import { AboutSection } from "@/components/about-section";
 import { ContactSection } from "@/components/contact-section";
+import { ConstructionSequence } from "@/components/construction-sequence";
 import { EquipmentSection } from "@/components/equipment-section";
 import { Hero } from "@/components/hero";
 import { PrinciplesSection } from "@/components/principles-section";
@@ -27,6 +28,7 @@ export default function Home() {
         <Hero />
         <AboutSection />
         <ServicesSection />
+        <ConstructionSequence />
         <PrinciplesSection />
         <EquipmentSection />
         <ContactSection />

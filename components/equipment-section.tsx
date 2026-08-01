@@ -22,7 +22,7 @@ export function EquipmentSection() {
 
         <div className="mt-12 grid gap-5 lg:grid-cols-12 lg:gap-6">
           <Reveal delay={0.08} className="lg:col-span-8">
-          <div className="relative aspect-[16/10] min-h-[25rem] overflow-hidden rounded-[var(--radius-card)] bg-[var(--surface-dark)]">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[var(--radius-card)] bg-[var(--surface-dark)] sm:aspect-[16/10] sm:min-h-[25rem]">
             <Image
               src="/images/equipment/equipment.avif"
               alt={t.equipment.imageAlt}

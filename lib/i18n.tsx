@@ -31,6 +31,18 @@ const translations = {
         { title: "Integrated Project Delivery", description: "Planning, coordination and execution across connected infrastructure scopes." },
       ],
     },
+    process: {
+      eyebrow: "From terrain to finished environment",
+      title: "Infrastructure takes shape, step by step.",
+      scroll: "Scroll to continue construction",
+      canvasAlt: "Accelerated road construction in the Armenian mountains",
+      stages: [
+        { title: "Preparing the terrain", description: "The route is cleared, graded and organized for coordinated construction." },
+        { title: "Building the foundation", description: "Materials, drainage and structural layers establish a durable base." },
+        { title: "Laying the surface", description: "The road, curbs, lighting and pedestrian routes come together as one system." },
+        { title: "Completing the environment", description: "Planting and final details turn infrastructure into a connected place." },
+      ],
+    },
     principles: {
       title: "A disciplined approach to every environment.",
       intro: "The strongest project decisions come from seeing the site as one connected system.",
@@ -76,6 +88,18 @@ const translations = {
         { title: "Комплексная реализация проектов", description: "Планирование, координация и выполнение взаимосвязанных инфраструктурных работ." },
       ],
     },
+    process: {
+      eyebrow: "От территории к готовой среде",
+      title: "Инфраструктура создаётся шаг за шагом.",
+      scroll: "Прокручивайте, чтобы продолжить строительство",
+      canvasAlt: "Ускоренное строительство дороги в горной местности Армении",
+      stages: [
+        { title: "Подготовка территории", description: "Маршрут расчищается, выравнивается и подготавливается к последовательным работам." },
+        { title: "Формирование основания", description: "Материалы, дренаж и конструктивные слои создают долговечную основу." },
+        { title: "Устройство покрытия", description: "Дорога, бордюры, освещение и пешеходные маршруты объединяются в одну систему." },
+        { title: "Готовая среда", description: "Озеленение и завершающие детали превращают инфраструктуру в связанную территорию." },
+      ],
+    },
     principles: {
       title: "Дисциплинированный подход к каждой территории.", intro: "Сильные проектные решения рождаются из понимания площадки как единой взаимосвязанной системы.",
       items: [
@@ -114,6 +138,18 @@ const translations = {
         { title: "Մարզական և խաղային միջավայրեր", description: "Ամենօրյա անվտանգ օգտագործման համար ստեղծված ֆուտբոլի դաշտեր, խաղահրապարակներ և ակտիվ գոտիներ։" },
         { title: "Ավտոկայանատեղիներ և մուտքային ուղիներ", description: "Տարածքի ընդհանուր կառուցվածքում ինտեգրված կայուն կայանման և երթևեկության լուծումներ։" },
         { title: "Նախագծերի համալիր իրականացում", description: "Փոխկապակցված ենթակառուցվածքային աշխատանքների պլանավորում, համակարգում և իրականացում։" },
+      ],
+    },
+    process: {
+      eyebrow: "Տարածքից՝ պատրաստ միջավայր",
+      title: "Ենթակառուցվածքը ստեղծվում է քայլ առ քայլ։",
+      scroll: "Ոլորեք՝ շինարարությունը շարունակելու համար",
+      canvasAlt: "Արագացված ճանապարհաշինություն Հայաստանի լեռնային տեղանքում",
+      stages: [
+        { title: "Տարածքի նախապատրաստում", description: "Երթուղին մաքրվում, հարթեցվում և պատրաստվում է համակարգված աշխատանքներին։" },
+        { title: "Հիմքի կառուցում", description: "Նյութերը, ջրահեռացումն ու կառուցվածքային շերտերը ստեղծում են ամուր հիմք։" },
+        { title: "Ծածկույթի տեղադրում", description: "Ճանապարհը, եզրաքարերը, լուսավորությունն ու հետիոտնային ուղիները միավորվում են մեկ համակարգում։" },
+        { title: "Պատրաստ միջավայր", description: "Կանաչապատումն ու ավարտական մանրամասները ենթակառուցվածքը վերածում են ամբողջական միջավայրի։" },
       ],
     },
     principles: {

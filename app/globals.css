@@ -88,6 +88,16 @@ html[lang="hy"] .principles-heading {
   hyphens: none;
 }
 
+html[lang="hy"] .process-heading {
+  max-width: 15ch;
+  font-size: clamp(2.35rem, 3.55vw, 4.25rem);
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
 html[lang="hy"] .eyebrow {
   letter-spacing: 0.08em;
   text-transform: none;
