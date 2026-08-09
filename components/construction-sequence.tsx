@@ -13,6 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 const assetBase = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const sequenceSource = `${assetBase}/video/construction-sequence.mp4`;
+const mobileSequenceSource = `${assetBase}/video/construction-sequence-mobile.mp4`;
 const sequencePoster = `${assetBase}/images/hero/construction-sequence-poster.jpg`;
 
 export function ConstructionSequence() {
@@ -88,15 +89,32 @@ export function ConstructionSequence() {
     };
 
     const syncAfterMetadata = () => renderProgress(targetProgress);
+    const primeMobileVideo = () => {
+      const playback = videoElement.play();
+      if (!playback) return;
+
+      void playback
+        .then(() => {
+          videoElement.pause();
+          scheduleVideoUpdate();
+        })
+        .catch(() => undefined);
+    };
+    const mobile = window.matchMedia("(max-width: 767px)").matches;
+
     videoElement.pause();
     videoElement.addEventListener("loadedmetadata", syncAfterMetadata);
+    videoElement.addEventListener("canplay", syncAfterMetadata);
     videoElement.addEventListener("seeked", syncAfterSeek);
+    if (mobile) section.addEventListener("touchstart", primeMobileVideo, { once: true, passive: true });
 
     if (reduce) {
       renderProgress(1);
       return () => {
         videoElement.removeEventListener("loadedmetadata", syncAfterMetadata);
+        videoElement.removeEventListener("canplay", syncAfterMetadata);
         videoElement.removeEventListener("seeked", syncAfterSeek);
+        section.removeEventListener("touchstart", primeMobileVideo);
         if (animationFrame) window.cancelAnimationFrame(animationFrame);
       };
     }
@@ -124,7 +142,9 @@ export function ConstructionSequence() {
       tween.scrollTrigger?.kill();
       tween.kill();
       videoElement.removeEventListener("loadedmetadata", syncAfterMetadata);
+      videoElement.removeEventListener("canplay", syncAfterMetadata);
       videoElement.removeEventListener("seeked", syncAfterSeek);
+      section.removeEventListener("touchstart", primeMobileVideo);
       if (animationFrame) window.cancelAnimationFrame(animationFrame);
     };
   }, [reduce]);
@@ -143,14 +163,16 @@ export function ConstructionSequence() {
       >
         <video
           ref={videoRef}
-          src={sequenceSource}
           poster={sequencePoster}
           muted
           playsInline
           preload="auto"
           aria-label={t.process.canvasAlt}
           className="absolute inset-0 size-full object-cover"
-        />
+        >
+          <source media="(max-width: 767px)" src={mobileSequenceSource} type="video/mp4" />
+          <source src={sequenceSource} type="video/mp4" />
+        </video>
 
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(6,12,9,.58)_0%,rgba(6,12,9,.05)_40%,rgba(6,12,9,.72)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,11,8,.56)_0%,transparent_55%,rgba(5,11,8,.12)_100%)]" />
