@@ -3,6 +3,8 @@ import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const iconUrl = `${basePath}/icon.svg`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -13,9 +15,9 @@ export const metadata: Metadata = {
   description:
     "Roads, landscapes and public spaces shaped as one connected environment.",
   icons: {
-    icon: "/icon.svg",
-    shortcut: "/icon.svg",
-    apple: "/icon.svg",
+    icon: iconUrl,
+    shortcut: iconUrl,
+    apple: iconUrl,
   },
   openGraph: {
     title: "ECO MAGISTRAL",
