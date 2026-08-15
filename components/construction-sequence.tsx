@@ -15,10 +15,20 @@ const assetBase = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const sequenceSource = `${assetBase}/video/construction-sequence.mp4`;
 const mobileSequenceSource = `${assetBase}/video/construction-sequence-mobile.mp4`;
 const sequencePoster = `${assetBase}/images/hero/construction-sequence-poster.jpg`;
+const MOBILE_FRAME_COUNT = 81;
+const MOBILE_LAST_FRAME = MOBILE_FRAME_COUNT - 1;
+const MOBILE_FRAME_STEP = 3;
+const MOBILE_CACHE_SIZE = 14;
+
+function mobileFrameSource(index: number) {
+  const sourceIndex = index === MOBILE_LAST_FRAME ? 239 : index * MOBILE_FRAME_STEP;
+  return `${assetBase}/video/construction-sequence/ezgif-frame-${String(sourceIndex + 1).padStart(3, "0")}.jpg`;
+}
 
 export function ConstructionSequence() {
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const introRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLSpanElement>(null);
   const [activeStep, setActiveStep] = useState(0);
@@ -28,44 +38,16 @@ export function ConstructionSequence() {
   useEffect(() => {
     const section = sectionRef.current;
     const video = videoRef.current;
-    if (!section || !video) return;
+    const canvas = canvasRef.current;
+    if (!section || !video || !canvas) return;
     const videoElement = video;
+    const canvasElement = canvas;
+    const useFrameSequence = window.matchMedia("(max-width: 767px)").matches;
 
     let currentStep = 0;
     let targetProgress = reduce ? 1 : 0;
-    let animationFrame = 0;
-    let seekQueued = false;
-
-    const scheduleVideoUpdate = () => {
-      if (videoElement.seeking) {
-        seekQueued = true;
-        return;
-      }
-      if (!animationFrame) animationFrame = window.requestAnimationFrame(updateVideoTime);
-    };
-
-    function updateVideoTime() {
-      animationFrame = 0;
-      const duration = videoElement.duration;
-      if (!Number.isFinite(duration) || duration <= 0) return;
-      if (videoElement.seeking) {
-        seekQueued = true;
-        return;
-      }
-
-      const lastFrameTime = Math.max(0, duration - 1 / 24);
-      const nextTime = targetProgress * lastFrameTime;
-      if (Math.abs(videoElement.currentTime - nextTime) > 1 / 48) {
-        seekQueued = false;
-        videoElement.currentTime = nextTime;
-      }
-    }
-
-    const syncAfterSeek = () => {
-      if (!seekQueued) return;
-      seekQueued = false;
-      scheduleVideoUpdate();
-    };
+    let renderMedia: (progress: number) => void = () => undefined;
+    let cleanupMedia: () => void = () => undefined;
 
     const renderProgress = (progress: number) => {
       targetProgress = Math.max(0, Math.min(1, progress));
@@ -85,37 +67,182 @@ export function ConstructionSequence() {
         setActiveStep(nextStep);
       }
 
-      scheduleVideoUpdate();
+      renderMedia(targetProgress);
     };
 
-    const syncAfterMetadata = () => renderProgress(targetProgress);
-    const primeMobileVideo = () => {
-      const playback = videoElement.play();
-      if (!playback) return;
+    if (useFrameSequence) {
+      const context = canvasElement.getContext("2d", { alpha: false });
+      if (!context) return;
 
-      void playback
-        .then(() => {
+      const cache = new Map<number, HTMLImageElement>();
+      const pending = new Map<number, Promise<HTMLImageElement>>();
+      let disposed = false;
+      let requestedFrame = reduce ? MOBILE_LAST_FRAME : 0;
+      let displayedFrame = -1;
+
+      videoElement.pause();
+      videoElement.preload = "none";
+      videoElement.style.display = "none";
+      videoElement.setAttribute("aria-hidden", "true");
+      canvasElement.style.display = "block";
+      canvasElement.removeAttribute("aria-hidden");
+
+      const drawCover = (image: HTMLImageElement) => {
+        const width = canvasElement.width;
+        const height = canvasElement.height;
+        const scale = Math.max(width / image.naturalWidth, height / image.naturalHeight);
+        const drawWidth = image.naturalWidth * scale;
+        const drawHeight = image.naturalHeight * scale;
+        context.drawImage(image, (width - drawWidth) / 2, (height - drawHeight) / 2, drawWidth, drawHeight);
+      };
+
+      const pruneCache = (keepIndex: number) => {
+        if (cache.size <= MOBILE_CACHE_SIZE) return;
+        const candidates = [...cache.keys()].sort(
+          (first, second) => Math.abs(second - keepIndex) - Math.abs(first - keepIndex),
+        );
+        while (cache.size > MOBILE_CACHE_SIZE && candidates.length) {
+          const candidate = candidates.shift();
+          if (candidate !== undefined && candidate !== keepIndex) cache.delete(candidate);
+        }
+      };
+
+      const loadFrame = (index: number) => {
+        const safeIndex = Math.max(0, Math.min(MOBILE_LAST_FRAME, index));
+        const cached = cache.get(safeIndex);
+        if (cached) return Promise.resolve(cached);
+        const existing = pending.get(safeIndex);
+        if (existing) return existing;
+
+        const promise = new Promise<HTMLImageElement>((resolve, reject) => {
+          const image = new window.Image();
+          image.decoding = "async";
+          image.onload = () => {
+            cache.set(safeIndex, image);
+            pending.delete(safeIndex);
+            pruneCache(safeIndex);
+            resolve(image);
+          };
+          image.onerror = () => {
+            pending.delete(safeIndex);
+            reject(new Error(`Unable to load construction frame ${safeIndex + 1}`));
+          };
+          image.src = mobileFrameSource(safeIndex);
+        });
+        pending.set(safeIndex, promise);
+        return promise;
+      };
+
+      const resizeCanvas = () => {
+        const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+        const bounds = canvasElement.getBoundingClientRect();
+        canvasElement.width = Math.max(1, Math.round(bounds.width * ratio));
+        canvasElement.height = Math.max(1, Math.round(bounds.height * ratio));
+        const current = cache.get(displayedFrame);
+        if (current) drawCover(current);
+      };
+
+      renderMedia = (progress: number) => {
+        const nextFrame = Math.max(0, Math.min(MOBILE_LAST_FRAME, Math.round(progress * MOBILE_LAST_FRAME)));
+        const direction = nextFrame >= requestedFrame ? 1 : -1;
+        requestedFrame = nextFrame;
+
+        const exact = cache.get(nextFrame);
+        if (exact) {
+          drawCover(exact);
+          displayedFrame = nextFrame;
+          canvasElement.dataset.frame = String(nextFrame);
+        }
+
+        void loadFrame(nextFrame)
+          .then((image) => {
+            if (disposed || requestedFrame !== nextFrame) return;
+            drawCover(image);
+            displayedFrame = nextFrame;
+            canvasElement.dataset.frame = String(nextFrame);
+          })
+          .catch(() => undefined);
+
+        [direction, direction * 2, -direction].forEach((offset) => {
+          const nearby = nextFrame + offset;
+          if (nearby >= 0 && nearby <= MOBILE_LAST_FRAME) void loadFrame(nearby).catch(() => undefined);
+        });
+      };
+
+      resizeCanvas();
+      window.addEventListener("resize", resizeCanvas);
+      cleanupMedia = () => {
+        disposed = true;
+        window.removeEventListener("resize", resizeCanvas);
+        cache.clear();
+        pending.clear();
+      };
+    } else {
+      let animationFrame = 0;
+      let seekQueued = false;
+
+      const scheduleVideoUpdate = () => {
+        if (videoElement.seeking) {
+          seekQueued = true;
+          return;
+        }
+        if (!animationFrame) animationFrame = window.requestAnimationFrame(updateVideoTime);
+      };
+
+      function updateVideoTime() {
+        animationFrame = 0;
+        const duration = videoElement.duration;
+        if (!Number.isFinite(duration) || duration <= 0) return;
+        if (videoElement.seeking) {
+          seekQueued = true;
+          return;
+        }
+
+        const lastFrameTime = Math.max(0, duration - 1 / 24);
+        const nextTime = targetProgress * lastFrameTime;
+        if (Math.abs(videoElement.currentTime - nextTime) > 1 / 48) {
+          seekQueued = false;
+          videoElement.currentTime = nextTime;
+        }
+      }
+
+      const syncAfterSeek = () => {
+        if (!seekQueued) return;
+        seekQueued = false;
+        scheduleVideoUpdate();
+      };
+      const syncAfterMetadata = () => renderProgress(targetProgress);
+      const primeMobileVideo = () => {
+        const playback = videoElement.play();
+        if (!playback) return;
+        void playback.then(() => {
           videoElement.pause();
           scheduleVideoUpdate();
-        })
-        .catch(() => undefined);
-    };
-    const mobile = window.matchMedia("(max-width: 767px)").matches;
+        }).catch(() => undefined);
+      };
+      const mobile = window.matchMedia("(max-width: 767px)").matches;
 
-    videoElement.pause();
-    videoElement.addEventListener("loadedmetadata", syncAfterMetadata);
-    videoElement.addEventListener("canplay", syncAfterMetadata);
-    videoElement.addEventListener("seeked", syncAfterSeek);
-    if (mobile) section.addEventListener("touchstart", primeMobileVideo, { once: true, passive: true });
+      renderMedia = () => scheduleVideoUpdate();
+      videoElement.preload = "auto";
+      videoElement.pause();
+      if (videoElement.readyState === HTMLMediaElement.HAVE_NOTHING) videoElement.load();
+      videoElement.addEventListener("loadedmetadata", syncAfterMetadata);
+      videoElement.addEventListener("canplay", syncAfterMetadata);
+      videoElement.addEventListener("seeked", syncAfterSeek);
+      if (mobile) window.addEventListener("touchstart", primeMobileVideo, { once: true, passive: true });
+      cleanupMedia = () => {
+        videoElement.removeEventListener("loadedmetadata", syncAfterMetadata);
+        videoElement.removeEventListener("canplay", syncAfterMetadata);
+        videoElement.removeEventListener("seeked", syncAfterSeek);
+        window.removeEventListener("touchstart", primeMobileVideo);
+        if (animationFrame) window.cancelAnimationFrame(animationFrame);
+      };
+    }
 
     if (reduce) {
       renderProgress(1);
       return () => {
-        videoElement.removeEventListener("loadedmetadata", syncAfterMetadata);
-        videoElement.removeEventListener("canplay", syncAfterMetadata);
-        videoElement.removeEventListener("seeked", syncAfterSeek);
-        section.removeEventListener("touchstart", primeMobileVideo);
-        if (animationFrame) window.cancelAnimationFrame(animationFrame);
+        cleanupMedia();
       };
     }
 
@@ -141,11 +268,7 @@ export function ConstructionSequence() {
     return () => {
       tween.scrollTrigger?.kill();
       tween.kill();
-      videoElement.removeEventListener("loadedmetadata", syncAfterMetadata);
-      videoElement.removeEventListener("canplay", syncAfterMetadata);
-      videoElement.removeEventListener("seeked", syncAfterSeek);
-      section.removeEventListener("touchstart", primeMobileVideo);
-      if (animationFrame) window.cancelAnimationFrame(animationFrame);
+      cleanupMedia();
     };
   }, [reduce]);
 
@@ -166,13 +289,20 @@ export function ConstructionSequence() {
           poster={sequencePoster}
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
           aria-label={t.process.canvasAlt}
           className="absolute inset-0 size-full object-cover"
         >
           <source media="(max-width: 767px)" src={mobileSequenceSource} type="video/mp4" />
           <source src={sequenceSource} type="video/mp4" />
         </video>
+        <canvas
+          ref={canvasRef}
+          role="img"
+          aria-label={t.process.canvasAlt}
+          aria-hidden="true"
+          className="absolute inset-0 hidden size-full"
+        />
 
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(6,12,9,.58)_0%,rgba(6,12,9,.05)_40%,rgba(6,12,9,.72)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,11,8,.56)_0%,transparent_55%,rgba(5,11,8,.12)_100%)]" />
