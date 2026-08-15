@@ -15,14 +15,12 @@ const assetBase = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const sequenceSource = `${assetBase}/video/construction-sequence.mp4`;
 const mobileSequenceSource = `${assetBase}/video/construction-sequence-mobile.mp4`;
 const sequencePoster = `${assetBase}/images/hero/construction-sequence-poster.jpg`;
-const MOBILE_FRAME_COUNT = 81;
+const MOBILE_FRAME_COUNT = 80;
 const MOBILE_LAST_FRAME = MOBILE_FRAME_COUNT - 1;
-const MOBILE_FRAME_STEP = 3;
 const MOBILE_CACHE_SIZE = 14;
 
 function mobileFrameSource(index: number) {
-  const sourceIndex = index === MOBILE_LAST_FRAME ? 239 : index * MOBILE_FRAME_STEP;
-  return `${assetBase}/video/construction-sequence/ezgif-frame-${String(sourceIndex + 1).padStart(3, "0")}.jpg`;
+  return `${assetBase}/video/construction-sequence-mobile-frames/frame-${String(index + 1).padStart(3, "0")}.webp`;
 }
 
 export function ConstructionSequence() {
