@@ -240,6 +240,35 @@ textarea:focus-visible {
   .section-pad-compact {
     padding-block: 4.5rem;
   }
+
+  .display-xl {
+    font-size: 2.95rem;
+  }
+
+  .display-lg {
+    font-size: 2.45rem;
+  }
+
+  .display-md {
+    font-size: 2.05rem;
+  }
+
+  .body-lg {
+    font-size: 1rem;
+  }
+
+  html[lang="hy"] .about-heading {
+    font-size: 2.3rem;
+  }
+
+  html[lang="hy"] .principles-heading,
+  html[lang="hy"] .process-heading {
+    font-size: 2.15rem;
+  }
+
+  html[lang="hy"] .footer-statement {
+    font-size: 1.6rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

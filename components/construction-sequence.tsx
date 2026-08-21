@@ -309,7 +309,7 @@ export function ConstructionSequence() {
           <div ref={introRef} className="flex items-start justify-between gap-6 will-change-[opacity,transform]">
             <div>
               <p className="eyebrow text-white/66">{t.process.eyebrow}</p>
-              <h2 id="process-heading" className="process-heading mt-5 max-w-[11ch] text-[clamp(2.5rem,5vw,6rem)] font-medium leading-[0.94] tracking-[-0.055em] text-balance">
+              <h2 id="process-heading" className="process-heading mt-5 max-w-[11ch] text-[clamp(2.3rem,5vw,6rem)] font-medium leading-[0.94] tracking-[-0.055em] text-balance">
                 {t.process.title}
               </h2>
             </div>
@@ -332,7 +332,7 @@ export function ConstructionSequence() {
                   <p className="font-mono text-xs tracking-[0.14em] text-white/58">
                     {String(activeStep + 1).padStart(2, "0")} / 04
                   </p>
-                  <h3 className="mt-3 text-[clamp(1.75rem,3vw,3.5rem)] font-semibold leading-[1.02] tracking-[-0.045em] text-balance">
+                  <h3 className="mt-3 text-[clamp(1.625rem,3vw,3.5rem)] font-semibold leading-[1.02] tracking-[-0.045em] text-balance">
                     {step.title}
                   </h3>
                   <p className="mt-4 max-w-md text-sm leading-6 text-white/72 sm:text-base sm:leading-7">

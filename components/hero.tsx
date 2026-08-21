@@ -66,7 +66,7 @@ export function Hero() {
           initial={reduce ? false : { opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display text-[clamp(3.2rem,9.4vw,9.75rem)] font-semibold leading-[0.82] tracking-[-0.075em] text-balance"
+          className="font-display text-[clamp(2.9rem,9.4vw,9.75rem)] font-semibold leading-[0.82] tracking-[-0.075em] text-balance"
         >
           <span className="block font-light text-white/82">ECO</span>
           <span className="block">MAGISTRAL</span>

@@ -20,7 +20,7 @@ export function SiteFooter() {
         <div className="grid gap-14 border-b border-white/15 pb-16 md:grid-cols-12 md:pb-24">
           <div className="md:col-span-7">
             <BrandLockup inverse className="text-lg" />
-            <p className="footer-statement mt-8 max-w-3xl break-words text-[clamp(2.25rem,5.5vw,6rem)] font-medium leading-[0.94] tracking-[-0.06em] text-balance">
+            <p className="footer-statement mt-8 max-w-3xl break-words text-[clamp(2.05rem,5.5vw,6rem)] font-medium leading-[0.94] tracking-[-0.06em] text-balance">
               {t.footer.statement}
             </p>
           </div>
