@@ -7,6 +7,7 @@ import { ArrowDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { useLanguage } from "@/lib/i18n";
+import { setProcessNavigationHidden } from "@/lib/process-navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -250,8 +251,10 @@ export function ConstructionSequence() {
     }
 
     if (reduce) {
+      setProcessNavigationHidden(false);
       renderProgress(1);
       return () => {
+        setProcessNavigationHidden(false);
         cleanupMedia();
       };
     }
@@ -270,12 +273,14 @@ export function ConstructionSequence() {
         end: "bottom bottom",
         scrub: 0.18,
         invalidateOnRefresh: true,
+        onToggle: (trigger) => setProcessNavigationHidden(trigger.isActive),
       },
     });
 
     renderProgress(0);
 
     return () => {
+      setProcessNavigationHidden(false);
       tween.scrollTrigger?.kill();
       tween.kill();
       cleanupMedia();

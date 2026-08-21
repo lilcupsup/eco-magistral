@@ -2,17 +2,19 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { BrandLockup } from "@/components/brand-lockup";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { type Language, useLanguage } from "@/lib/i18n";
+import { isProcessNavigationHidden, PROCESS_NAVIGATION_EVENT } from "@/lib/process-navigation";
 
 const languages: Language[] = ["en", "ru", "hy"];
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [hiddenForProcess, setHiddenForProcess] = useState(false);
   const reduce = useReducedMotion();
   const { language, setLanguage, t } = useLanguage();
   const navItems = [
@@ -22,8 +24,29 @@ export function SiteHeader() {
     { label: t.nav.contact, href: "#contact" },
   ];
 
+  useEffect(() => {
+    const syncVisibility = () => {
+      const hidden = isProcessNavigationHidden();
+      setHiddenForProcess(hidden);
+      if (hidden) setOpen(false);
+    };
+
+    syncVisibility();
+    window.addEventListener(PROCESS_NAVIGATION_EVENT, syncVisibility);
+    return () => window.removeEventListener(PROCESS_NAVIGATION_EVENT, syncVisibility);
+  }, []);
+
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
+    <header
+      aria-hidden={hiddenForProcess || undefined}
+      inert={hiddenForProcess || undefined}
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 px-3 pt-3 transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.4,0,1,1)] will-change-[transform,opacity] sm:px-5 sm:pt-4",
+        hiddenForProcess
+          ? "pointer-events-none -translate-y-full opacity-0"
+          : "translate-y-0 opacity-100 ease-[cubic-bezier(0.16,1,0.3,1)]",
+      )}
+    >
       <div className="light-glass-surface mx-auto flex h-14 max-w-[90rem] items-center justify-between rounded-full px-4 text-ink sm:h-16 sm:px-5">
         <a
           href="#top"
