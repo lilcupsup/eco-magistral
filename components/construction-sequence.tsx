@@ -16,11 +16,16 @@ const sequenceSource = `${assetBase}/video/construction-sequence.mp4`;
 const mobileSequenceSource = `${assetBase}/video/construction-sequence-mobile.mp4`;
 const sequencePoster = `${assetBase}/images/hero/construction-sequence-poster.jpg`;
 const MOBILE_FRAME_COUNT = 80;
-const MOBILE_LAST_FRAME = MOBILE_FRAME_COUNT - 1;
 const MOBILE_CACHE_SIZE = 14;
+const DESKTOP_FRAME_COUNT = 192;
+const DESKTOP_CACHE_SIZE = 32;
 
 function mobileFrameSource(index: number) {
   return `${assetBase}/video/construction-sequence-mobile-frames/frame-${String(index + 1).padStart(3, "0")}.webp`;
+}
+
+function desktopFrameSource(index: number) {
+  return `${assetBase}/video/construction-sequence-desktop-frames/frame-${String(index + 1).padStart(3, "0")}.webp`;
 }
 
 export function ConstructionSequence() {
@@ -40,7 +45,13 @@ export function ConstructionSequence() {
     if (!section || !video || !canvas) return;
     const videoElement = video;
     const canvasElement = canvas;
-    const useFrameSequence = window.matchMedia("(max-width: 767px)").matches;
+    const mobile = window.matchMedia("(max-width: 767px)").matches;
+    const firefox = /firefox/i.test(window.navigator.userAgent);
+    const useFrameSequence = mobile || firefox;
+    const frameCount = mobile ? MOBILE_FRAME_COUNT : DESKTOP_FRAME_COUNT;
+    const lastFrame = frameCount - 1;
+    const cacheSize = mobile ? MOBILE_CACHE_SIZE : DESKTOP_CACHE_SIZE;
+    const frameSource = mobile ? mobileFrameSource : desktopFrameSource;
 
     let currentStep = 0;
     let targetProgress = reduce ? 1 : 0;
@@ -75,7 +86,7 @@ export function ConstructionSequence() {
       const cache = new Map<number, HTMLImageElement>();
       const pending = new Map<number, Promise<HTMLImageElement>>();
       let disposed = false;
-      let requestedFrame = reduce ? MOBILE_LAST_FRAME : 0;
+      let requestedFrame = reduce ? lastFrame : 0;
       let displayedFrame = -1;
 
       videoElement.pause();
@@ -95,18 +106,18 @@ export function ConstructionSequence() {
       };
 
       const pruneCache = (keepIndex: number) => {
-        if (cache.size <= MOBILE_CACHE_SIZE) return;
+        if (cache.size <= cacheSize) return;
         const candidates = [...cache.keys()].sort(
           (first, second) => Math.abs(second - keepIndex) - Math.abs(first - keepIndex),
         );
-        while (cache.size > MOBILE_CACHE_SIZE && candidates.length) {
+        while (cache.size > cacheSize && candidates.length) {
           const candidate = candidates.shift();
           if (candidate !== undefined && candidate !== keepIndex) cache.delete(candidate);
         }
       };
 
       const loadFrame = (index: number) => {
-        const safeIndex = Math.max(0, Math.min(MOBILE_LAST_FRAME, index));
+        const safeIndex = Math.max(0, Math.min(lastFrame, index));
         const cached = cache.get(safeIndex);
         if (cached) return Promise.resolve(cached);
         const existing = pending.get(safeIndex);
@@ -125,14 +136,14 @@ export function ConstructionSequence() {
             pending.delete(safeIndex);
             reject(new Error(`Unable to load construction frame ${safeIndex + 1}`));
           };
-          image.src = mobileFrameSource(safeIndex);
+          image.src = frameSource(safeIndex);
         });
         pending.set(safeIndex, promise);
         return promise;
       };
 
       const resizeCanvas = () => {
-        const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+        const ratio = Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 2);
         const bounds = canvasElement.getBoundingClientRect();
         canvasElement.width = Math.max(1, Math.round(bounds.width * ratio));
         canvasElement.height = Math.max(1, Math.round(bounds.height * ratio));
@@ -141,7 +152,7 @@ export function ConstructionSequence() {
       };
 
       renderMedia = (progress: number) => {
-        const nextFrame = Math.max(0, Math.min(MOBILE_LAST_FRAME, Math.round(progress * MOBILE_LAST_FRAME)));
+        const nextFrame = Math.max(0, Math.min(lastFrame, Math.round(progress * lastFrame)));
         const direction = nextFrame >= requestedFrame ? 1 : -1;
         requestedFrame = nextFrame;
 
@@ -161,9 +172,12 @@ export function ConstructionSequence() {
           })
           .catch(() => undefined);
 
-        [direction, direction * 2, -direction].forEach((offset) => {
+        const prefetchOffsets = mobile
+          ? [direction, direction * 2, -direction]
+          : [direction, direction * 2, direction * 3, direction * 4, -direction, -direction * 2];
+        prefetchOffsets.forEach((offset) => {
           const nearby = nextFrame + offset;
-          if (nearby >= 0 && nearby <= MOBILE_LAST_FRAME) void loadFrame(nearby).catch(() => undefined);
+          if (nearby >= 0 && nearby <= lastFrame) void loadFrame(nearby).catch(() => undefined);
         });
       };
 
@@ -218,8 +232,6 @@ export function ConstructionSequence() {
           scheduleVideoUpdate();
         }).catch(() => undefined);
       };
-      const mobile = window.matchMedia("(max-width: 767px)").matches;
-
       renderMedia = () => scheduleVideoUpdate();
       videoElement.preload = "auto";
       videoElement.pause();
