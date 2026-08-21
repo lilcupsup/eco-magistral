@@ -37,14 +37,25 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header
+    <motion.header
+      initial={false}
+      animate={
+        hiddenForProcess
+          ? { opacity: 0, scale: 0.965, y: "-112%" }
+          : { opacity: 1, scale: 1, y: 0 }
+      }
+      transition={
+        reduce
+          ? { duration: 0 }
+          : hiddenForProcess
+            ? { duration: 0.24, ease: [0.4, 0, 1, 1] }
+            : { type: "spring", stiffness: 330, damping: 30, mass: 0.72 }
+      }
       aria-hidden={hiddenForProcess || undefined}
       inert={hiddenForProcess || undefined}
       className={cn(
-        "fixed inset-x-0 top-0 z-50 px-3 pt-3 transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.4,0,1,1)] will-change-[transform,opacity] sm:px-5 sm:pt-4",
-        hiddenForProcess
-          ? "pointer-events-none -translate-y-full opacity-0"
-          : "translate-y-0 opacity-100 ease-[cubic-bezier(0.16,1,0.3,1)]",
+        "fixed inset-x-0 top-0 z-50 origin-top px-3 pt-3 will-change-[transform,opacity] sm:px-5 sm:pt-4",
+        hiddenForProcess && "pointer-events-none",
       )}
     >
       <div className="light-glass-surface mx-auto flex h-14 max-w-[90rem] items-center justify-between rounded-full px-4 text-ink sm:h-16 sm:px-5">
@@ -147,6 +158,6 @@ export function SiteHeader() {
           </motion.nav>
         ) : null}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }
