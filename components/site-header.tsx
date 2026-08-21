@@ -64,7 +64,7 @@ export function SiteHeader() {
           className="inline-flex min-h-11 items-center rounded-full px-1"
           aria-label={t.header.home}
         >
-          <BrandLockup compact className="text-lg" />
+          <BrandLockup compact className="text-lg font-bold" />
         </a>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label={t.header.primary}>
