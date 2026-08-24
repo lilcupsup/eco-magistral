@@ -6,7 +6,6 @@ import {
   Camera,
   Clock3,
   Mail,
-  MessageCircle,
   Phone,
 } from "lucide-react";
 
@@ -26,8 +25,6 @@ export function ContactSection() {
   const { t } = useLanguage();
 
   const contactRows = [
-    { label: t.contact.labels.phone, ...contactDetails.phone, icon: Phone },
-    { label: t.contact.labels.whatsapp, ...contactDetails.whatsapp, icon: MessageCircle },
     { label: t.contact.labels.email, ...contactDetails.email, icon: Mail },
   ];
 
@@ -44,6 +41,39 @@ export function ContactSection() {
 
         <Reveal className="lg:col-span-6 lg:col-start-7" delay={0.08}>
           <div className="border-t border-line">
+            <div className="group grid min-h-28 grid-cols-[3rem_minmax(0,1fr)_2.75rem] items-center gap-4 border-b border-line py-5 sm:min-h-32 sm:grid-cols-[3.5rem_minmax(0,1fr)_3rem] sm:gap-6">
+              <span className="inline-flex size-12 items-center justify-center rounded-full border border-line transition-colors group-hover:border-accent/45 sm:size-14">
+                <Phone className="size-4.5" aria-hidden="true" strokeWidth={1.6} />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-xs font-semibold tracking-[0.08em] text-ink-muted uppercase">
+                  {t.contact.labels.phoneWhatsapp}
+                </span>
+                <span className="mt-2 flex flex-wrap items-baseline gap-x-2 text-xl font-semibold tracking-[-0.035em] sm:text-3xl">
+                  <a
+                    href={contactDetails.phone.href}
+                    className="transition-colors hover:text-accent"
+                    aria-label={`${t.contact.labels.phone}: ${contactDetails.phone.display}`}
+                  >
+                    {contactDetails.phone.display}
+                  </a>
+                  <span className="text-ink-muted/60" aria-hidden="true">/</span>
+                  <a
+                    href={contactDetails.whatsapp.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="transition-colors hover:text-accent"
+                    aria-label={`${t.contact.labels.whatsapp}: ${contactDetails.whatsapp.display}`}
+                  >
+                    WhatsApp
+                  </a>
+                </span>
+              </span>
+              <span className="inline-flex size-11 items-center justify-center rounded-full border border-line transition-all group-hover:border-accent/45 group-hover:bg-accent group-hover:text-paper">
+                <ArrowUpRight className="size-4" aria-hidden="true" strokeWidth={1.7} />
+              </span>
+            </div>
+
             {contactRows.map(({ label, display, href, icon: Icon }) => (
               <a
                 key={label}

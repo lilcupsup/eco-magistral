@@ -62,7 +62,7 @@ const translations = {
     },
     contact: {
       eyebrow: "Contact", title: "Let’s discuss what comes next.", intro: "Reach our team directly to discuss a site, a project scope or a potential partnership.",
-      labels: { phone: "Phone", whatsapp: "WhatsApp", email: "Email", hours: "Working hours" }, hours: "Mon–Fri, 09:00–18:00", socialTitle: "Follow ECO MAGISTRAL",
+      labels: { phone: "Phone", whatsapp: "WhatsApp", phoneWhatsapp: "Phone / WhatsApp", email: "Email", hours: "Working hours" }, hours: "Mon–Fri, 09:00–18:00", socialTitle: "Follow ECO MAGISTRAL",
     },
     footer: { statement: "Building modern infrastructure for connected places.", rights: "All rights reserved.", descriptor: "Infrastructure, landscape and public realm", navigation: "Footer navigation" },
   },
@@ -114,7 +114,7 @@ const translations = {
     },
     contact: {
       eyebrow: "Контакты", title: "Обсудим ваш следующий проект.", intro: "Свяжитесь с нашей командой напрямую, чтобы обсудить площадку, объём работ или возможное партнёрство.",
-      labels: { phone: "Телефон", whatsapp: "WhatsApp", email: "Электронная почта", hours: "Часы работы" }, hours: "Пн–Пт, 09:00–18:00", socialTitle: "ECO MAGISTRAL в социальных сетях",
+      labels: { phone: "Телефон", whatsapp: "WhatsApp", phoneWhatsapp: "Телефон / WhatsApp", email: "Электронная почта", hours: "Часы работы" }, hours: "Пн–Пт, 09:00–18:00", socialTitle: "ECO MAGISTRAL в социальных сетях",
     },
     footer: { statement: "Создаём современную инфраструктуру для связанных территорий.", rights: "Все права защищены.", descriptor: "Инфраструктура, ландшафт и общественные пространства", navigation: "Навигация в подвале сайта" },
   },
@@ -166,7 +166,7 @@ const translations = {
     },
     contact: {
       eyebrow: "Կապ", title: "Քննարկենք ձեր հաջորդ նախագիծը։", intro: "Կապվեք մեր թիմի հետ՝ տարածքը, աշխատանքների ծավալը կամ հնարավոր համագործակցությունը քննարկելու համար։",
-      labels: { phone: "Հեռախոս", whatsapp: "WhatsApp", email: "Էլեկտրոնային փոստ", hours: "Աշխատանքային ժամեր" }, hours: "Երկ–Ուրբ, 09:00–18:00", socialTitle: "ECO MAGISTRAL-ը սոցիալական ցանցերում",
+      labels: { phone: "Հեռախոս", whatsapp: "WhatsApp", phoneWhatsapp: "Հեռախոս / WhatsApp", email: "Էլեկտրոնային փոստ", hours: "Աշխատանքային ժամեր" }, hours: "Երկ–Ուրբ, 09:00–18:00", socialTitle: "ECO MAGISTRAL-ը սոցիալական ցանցերում",
     },
     footer: { statement: "Կառուցում ենք ժամանակակից ենթակառուցվածքներ փոխկապակցված տարածքների համար։", rights: "Բոլոր իրավունքները պաշտպանված են։", descriptor: "Ենթակառուցվածք, լանդշաֆտ և հանրային տարածքներ", navigation: "Էջատակի նավարկում" },
   },
