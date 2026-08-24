@@ -52,7 +52,7 @@ export function ContactSection() {
                 <span className="mt-2 flex flex-wrap items-baseline gap-x-2 text-xl font-semibold tracking-[-0.035em] sm:text-3xl">
                   <a
                     href={contactDetails.phone.href}
-                    className="transition-colors hover:text-accent"
+                    className="contact-value"
                     aria-label={`${t.contact.labels.phone}: ${contactDetails.phone.display}`}
                   >
                     {contactDetails.phone.display}
@@ -62,7 +62,7 @@ export function ContactSection() {
                     href={contactDetails.whatsapp.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="transition-colors hover:text-accent"
+                    className="contact-value"
                     aria-label={`${t.contact.labels.whatsapp}: ${contactDetails.whatsapp.display}`}
                   >
                     WhatsApp
@@ -80,7 +80,7 @@ export function ContactSection() {
                 href={href}
                 target={href.startsWith("http") ? "_blank" : undefined}
                 rel={href.startsWith("http") ? "noreferrer" : undefined}
-                className="group grid min-h-28 grid-cols-[3rem_minmax(0,1fr)_2.75rem] items-center gap-4 border-b border-line py-5 transition-colors hover:text-accent sm:min-h-32 sm:grid-cols-[3.5rem_minmax(0,1fr)_3rem] sm:gap-6"
+                className="contact-row group grid min-h-28 grid-cols-[3rem_minmax(0,1fr)_2.75rem] items-center gap-4 border-b border-line py-5 transition-colors sm:min-h-32 sm:grid-cols-[3.5rem_minmax(0,1fr)_3rem] sm:gap-6"
                 aria-label={`${label}: ${display}`}
               >
                 <span className="inline-flex size-12 items-center justify-center rounded-full border border-line transition-colors group-hover:border-accent/45 sm:size-14">
@@ -90,7 +90,7 @@ export function ContactSection() {
                   <span className="block text-xs font-semibold tracking-[0.08em] text-ink-muted uppercase">
                     {label}
                   </span>
-                  <span className="mt-2 block [overflow-wrap:anywhere] text-xl font-semibold tracking-[-0.035em] sm:text-3xl">
+                  <span className="contact-value mt-2 block [overflow-wrap:anywhere] text-xl font-semibold tracking-[-0.035em] sm:text-3xl">
                     {display}
                   </span>
                 </span>
