@@ -239,10 +239,7 @@ a.contact-value:focus-visible,
 .contact-row:hover .contact-value,
 .contact-row:focus-visible .contact-value {
   color: var(--forest-bright);
-  text-shadow:
-    0 0 1px currentColor,
-    0 0 14px rgb(29 90 62 / 0.52),
-    0 0 30px rgb(29 90 62 / 0.3);
+  text-shadow: 0 0 7px rgb(29 90 62 / 0.22);
 }
 
 @media (max-width: 767px) {
