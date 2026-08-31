@@ -68,7 +68,7 @@ export function ConstructionSequence() {
         introRef.current.style.transform = `translateY(${-18 * (1 - visibility)}px)`;
       }
       if (progressRef.current) {
-        progressRef.current.style.transform = `scaleX(${Math.max(0.01, targetProgress)})`;
+        progressRef.current.style.width = `${targetProgress * 100}%`;
       }
 
       const nextStep = Math.min(3, Math.floor(targetProgress * 4));
@@ -361,7 +361,7 @@ export function ConstructionSequence() {
 
             <div className="md:col-span-5 md:col-start-8">
               <div className="h-px overflow-hidden bg-white/24">
-                <span ref={progressRef} className="block h-full origin-left scale-x-[0.01] bg-white" />
+                <span ref={progressRef} className="block h-full w-0 bg-white" />
               </div>
               <div className="mt-4 flex justify-between text-[0.65rem] font-semibold tracking-[0.08em] text-white/56 uppercase">
                 {t.process.stages.map((stage, index) => (
