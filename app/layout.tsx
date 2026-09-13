@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { preload } from "react-dom";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n";
 
@@ -28,6 +29,12 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  preload(`${basePath}/images/hero/eco-magistral-hero.avif`, {
+    as: "image",
+    type: "image/avif",
+    fetchPriority: "high",
+  });
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body><LanguageProvider>{children}</LanguageProvider></body>

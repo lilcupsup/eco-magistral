@@ -1,20 +1,15 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { useLanguage } from "@/lib/i18n";
 import { setProcessNavigationHidden } from "@/lib/process-navigation";
 
-gsap.registerPlugin(ScrollTrigger);
-
 const assetBase = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const sequenceSource = `${assetBase}/video/construction-sequence.mp4`;
-const mobileSequenceSource = `${assetBase}/video/construction-sequence-mobile.mp4`;
 const sequencePoster = `${assetBase}/images/hero/construction-sequence-poster.jpg`;
 const MOBILE_FRAME_COUNT = 80;
 const MOBILE_CACHE_SIZE = 14;
@@ -44,6 +39,22 @@ export function ConstructionSequence() {
     const video = videoRef.current;
     const canvas = canvasRef.current;
     if (!section || !video || !canvas) return;
+
+    let disposed = false;
+    let initializing = false;
+    let teardown: (() => void) | undefined;
+
+    const initialize = async () => {
+      if (disposed || initializing || teardown) return;
+      initializing = true;
+
+      const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
+        import("gsap"),
+        import("gsap/ScrollTrigger"),
+      ]);
+      if (disposed) return;
+      gsap.registerPlugin(ScrollTrigger);
+
     const videoElement = video;
     const canvasElement = canvas;
     const mobile = window.matchMedia("(max-width: 767px)").matches;
@@ -194,6 +205,8 @@ export function ConstructionSequence() {
       let animationFrame = 0;
       let seekQueued = false;
 
+      videoElement.poster = sequencePoster;
+
       const scheduleVideoUpdate = () => {
         if (videoElement.seeking) {
           seekQueued = true;
@@ -285,6 +298,38 @@ export function ConstructionSequence() {
       tween.kill();
       cleanupMedia();
     };
+
+    };
+
+    if (!("IntersectionObserver" in window)) {
+      void initialize().then((nextTeardown) => {
+        if (disposed) nextTeardown?.();
+        else teardown = nextTeardown;
+      });
+      return () => {
+        disposed = true;
+        teardown?.();
+      };
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        void initialize().then((nextTeardown) => {
+          if (disposed) nextTeardown?.();
+          else teardown = nextTeardown;
+        });
+        observer.disconnect();
+      },
+      { rootMargin: "1400px 0px" },
+    );
+
+    observer.observe(section);
+    return () => {
+      disposed = true;
+      observer.disconnect();
+      teardown?.();
+    };
   }, [reduce]);
 
   const step = t.process.stages[activeStep];
@@ -301,14 +346,12 @@ export function ConstructionSequence() {
       >
         <video
           ref={videoRef}
-          poster={sequencePoster}
           muted
           playsInline
-          preload="metadata"
+          preload="none"
           aria-label={t.process.canvasAlt}
           className="absolute inset-0 size-full object-cover"
         >
-          <source media="(max-width: 767px)" src={mobileSequenceSource} type="video/mp4" />
           <source src={sequenceSource} type="video/mp4" />
         </video>
         <canvas
