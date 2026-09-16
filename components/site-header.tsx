@@ -57,7 +57,7 @@ export function SiteHeader() {
         hiddenForProcess && "pointer-events-none",
       )}
     >
-      <div className="light-glass-surface mx-auto flex h-14 max-w-[90rem] items-center justify-between rounded-full px-4 text-ink sm:h-16 sm:px-5">
+      <div className="light-glass-surface relative mx-auto flex h-14 max-w-[90rem] items-center justify-between rounded-full px-4 text-ink sm:h-16 sm:px-5">
         <a
           href="#top"
           className="inline-flex min-h-11 items-center rounded-full px-1"
@@ -66,7 +66,7 @@ export function SiteHeader() {
           <BrandLockup compact className="text-lg font-bold" />
         </a>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label={t.header.primary}>
+        <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 xl:flex" aria-label={t.header.primary}>
           {navItems.map((item) => (
             <a
               key={item.href}
@@ -114,7 +114,7 @@ export function SiteHeader() {
           </a>
           <button
             type="button"
-            className="inline-flex size-11 cursor-pointer items-center justify-center rounded-full text-ink transition-colors hover:bg-[rgba(18,61,44,0.07)] lg:hidden"
+            className="inline-flex size-11 cursor-pointer items-center justify-center rounded-full text-ink transition-colors hover:bg-[rgba(18,61,44,0.07)] xl:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? t.header.close : t.header.open}
@@ -134,7 +134,7 @@ export function SiteHeader() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={reduce ? { opacity: 0 } : { opacity: 0, y: -8, scale: 0.99 }}
             transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-            className="light-glass-surface mx-auto mt-2 grid max-w-[90rem] rounded-[1rem] p-3 text-ink lg:hidden"
+            className="light-glass-surface mx-auto mt-2 grid max-w-[90rem] rounded-[1rem] p-3 text-ink xl:hidden"
           >
             {navItems.map((item) => (
               <a
