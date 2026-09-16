@@ -54,6 +54,11 @@ export function Hero() {
         poster={`${assetBase}/images/hero/eco-magistral-hero.avif`}
         aria-hidden="true"
       >
+        <source
+          media="(max-width: 767px)"
+          src={`${assetBase}/video/eco-magistral-hero-mobile.mp4`}
+          type="video/mp4"
+        />
         <source src={`${assetBase}/video/eco-magistral-hero.mp4`} type="video/mp4" />
       </video>
 
