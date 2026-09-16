@@ -78,16 +78,6 @@ html[lang="hy"] .about-heading {
   overflow-wrap: anywhere;
 }
 
-html[lang="hy"] .principles-heading {
-  max-width: 15ch;
-  font-size: clamp(2.35rem, 3.45vw, 4rem);
-  letter-spacing: -0.025em;
-  line-height: 1.12;
-  overflow-wrap: normal;
-  word-break: normal;
-  hyphens: none;
-}
-
 html[lang="hy"] .process-heading {
   max-width: 15ch;
   font-size: clamp(2.35rem, 3.55vw, 4.25rem);
@@ -275,7 +265,6 @@ a.contact-value:focus-visible,
     font-size: 2.3rem;
   }
 
-  html[lang="hy"] .principles-heading,
   html[lang="hy"] .process-heading {
     font-size: 2.15rem;
   }

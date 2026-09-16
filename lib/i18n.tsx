@@ -8,7 +8,7 @@ const translations = {
   en: {
     language: { label: "Choose language", names: { en: "English", ru: "Russian", hy: "Armenian" } },
     skip: "Skip to content",
-    nav: { about: "About", services: "Capabilities", principles: "Principles", contact: "Contact", equipment: "Equipment" },
+    nav: { about: "About", services: "Capabilities", contact: "Contact", equipment: "Equipment" },
     header: { home: "ECO MAGISTRAL home", start: "Start a Project", open: "Open menu", close: "Close menu", primary: "Primary navigation", mobile: "Mobile navigation" },
     hero: { tagline: "Building Modern Infrastructure", cta: "Explore Capabilities", play: "Play background film", pause: "Pause background film" },
     about: {
@@ -43,16 +43,6 @@ const translations = {
         { title: "Completing the environment", description: "Planting and final details turn infrastructure into a connected place." },
       ],
     },
-    principles: {
-      title: "A disciplined approach to every environment.",
-      intro: "The strongest project decisions come from seeing the site as one connected system.",
-      items: [
-        { title: "Integrated Thinking", description: "We consider mobility, landscape and public use as one connected brief." },
-        { title: "Clarity on Site", description: "Defined responsibilities and direct communication keep decisions moving." },
-        { title: "Respect for Context", description: "Routes, materials and planting respond to the conditions of each site." },
-        { title: "Enduring Value", description: "We prioritize safe, practical and maintainable solutions over short-lived gestures." },
-      ],
-    },
     equipment: {
       title: "The right machine for the work.",
       intro: "Equipment is selected around site conditions, construction sequence and the finish each project demands.",
@@ -69,7 +59,7 @@ const translations = {
   ru: {
     language: { label: "Выбрать язык", names: { en: "Английский", ru: "Русский", hy: "Армянский" } },
     skip: "Перейти к содержанию",
-    nav: { about: "О компании", services: "Компетенции", principles: "Принципы", contact: "Контакты", equipment: "Техника" },
+    nav: { about: "О компании", services: "Компетенции", contact: "Контакты", equipment: "Техника" },
     header: { home: "Главная ECO MAGISTRAL", start: "Обсудить проект", open: "Открыть меню", close: "Закрыть меню", primary: "Основная навигация", mobile: "Мобильная навигация" },
     hero: { tagline: "Создаём современную инфраструктуру", cta: "Наши компетенции", play: "Включить фоновое видео", pause: "Приостановить фоновое видео" },
     about: {
@@ -100,15 +90,6 @@ const translations = {
         { title: "Готовая среда", description: "Озеленение и завершающие детали превращают инфраструктуру в связанную территорию." },
       ],
     },
-    principles: {
-      title: "Системный подход к каждой территории.", intro: "Сильные проектные решения рождаются из понимания площадки как единой взаимосвязанной системы.",
-      items: [
-        { title: "Комплексное мышление", description: "Мы рассматриваем мобильность, ландшафт и общественное использование как единую задачу." },
-        { title: "Ясность на площадке", description: "Чёткие зоны ответственности и прямая коммуникация ускоряют принятие решений." },
-        { title: "Уважение к контексту", description: "Маршруты, материалы и озеленение отвечают условиям каждой конкретной территории." },
-        { title: "Долговечная ценность", description: "Мы отдаём приоритет безопасным, практичным и ремонтопригодным решениям." },
-      ],
-    },
     equipment: {
       title: "Точная техника для каждой задачи.", intro: "Оборудование подбирается с учётом условий площадки, последовательности работ и требуемого качества результата.", caption: "От подготовки основания до финишных покрытий техника, планирование и строительные команды работают как единая система.", imageAlt: "Современная дорожная техника работает в горной местности Армении", groups: ["Земляные работы", "Дорожное строительство", "Уплотнение", "Обеспечение площадки", "Ландшафтные работы"],
     },
@@ -121,7 +102,7 @@ const translations = {
   hy: {
     language: { label: "Ընտրել լեզուն", names: { en: "Անգլերեն", ru: "Ռուսերեն", hy: "Հայերեն" } },
     skip: "Անցնել բովանդակությանը",
-    nav: { about: "Մեր մասին", services: "Կարողություններ", principles: "Սկզբունքներ", contact: "Կապ", equipment: "Տեխնիկա" },
+    nav: { about: "Մեր մասին", services: "Կարողություններ", contact: "Կապ", equipment: "Տեխնիկա" },
     header: { home: "ECO MAGISTRAL գլխավոր էջ", start: "Քննարկել նախագիծը", open: "Բացել ընտրացանկը", close: "Փակել ընտրացանկը", primary: "Հիմնական նավարկում", mobile: "Բջջային նավարկում" },
     hero: { tagline: "Կառուցում ենք ժամանակակից ենթակառուցվածքներ", cta: "Մեր կարողությունները", play: "Միացնել ֆոնային տեսանյութը", pause: "Դադարեցնել ֆոնային տեսանյութը" },
     about: {
@@ -150,15 +131,6 @@ const translations = {
         { title: "Հիմքի կառուցում", description: "Նյութերը, ջրահեռացումն ու կառուցվածքային շերտերը ստեղծում են ամուր հիմք։" },
         { title: "Ծածկույթի տեղադրում", description: "Ճանապարհը, եզրաքարերը, լուսավորությունն ու հետիոտնային ուղիները միավորվում են մեկ համակարգում։" },
         { title: "Պատրաստ միջավայր", description: "Կանաչապատումն ու ավարտական մանրամասները ենթակառուցվածքը վերածում են ամբողջական միջավայրի։" },
-      ],
-    },
-    principles: {
-      title: "Կարգապահ մոտեցում յուրաքանչյուր միջավայրին։", intro: "Լավագույն նախագծային որոշումները ծնվում են տարածքը որպես մեկ փոխկապակցված համակարգ դիտարկելուց։",
-      items: [
-        { title: "Համալիր մտածողություն", description: "Շարժունակությունը, լանդշաֆտը և հանրային օգտագործումը դիտարկում ենք որպես մեկ միասնական խնդիր։" },
-        { title: "Հստակություն շինհրապարակում", description: "Սահմանված պատասխանատվությունն ու ուղիղ հաղորդակցությունն արագացնում են որոշումների ընդունումը։" },
-        { title: "Հարգանք միջավայրի նկատմամբ", description: "Երթուղիները, նյութերն ու կանաչապատումը համապատասխանում են յուրաքանչյուր տարածքի պայմաններին։" },
-        { title: "Երկարակյաց արժեք", description: "Նախապատվությունը տալիս ենք անվտանգ, գործնական և սպասարկելի լուծումներին։" },
       ],
     },
     equipment: {

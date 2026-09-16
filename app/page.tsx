@@ -5,7 +5,6 @@ import { ContactSection } from "@/components/contact-section";
 import { ConstructionSequence } from "@/components/construction-sequence";
 import { EquipmentSection } from "@/components/equipment-section";
 import { Hero } from "@/components/hero";
-import { PrinciplesSection } from "@/components/principles-section";
 import { ServicesSection } from "@/components/services-section";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -29,7 +28,6 @@ export default function Home() {
         <AboutSection />
         <ServicesSection />
         <ConstructionSequence />
-        <PrinciplesSection />
         <EquipmentSection />
         <ContactSection />
       </main>

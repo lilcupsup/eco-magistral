@@ -1,5 +1,4 @@
 import {
-  Accessibility,
   Construction,
   Leaf,
   Map,
@@ -31,21 +30,6 @@ export const services = [
   {
     image: "/images/projects/public-space.avif",
     icon: Map,
-  },
-];
-
-export const principles = [
-  {
-    icon: Construction,
-  },
-  {
-    icon: ShieldCheck,
-  },
-  {
-    icon: Leaf,
-  },
-  {
-    icon: Accessibility,
   },
 ];
 
